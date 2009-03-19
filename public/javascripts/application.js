@@ -2,5 +2,5 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 $(document).ready(function(){
-  
+  $('#user_bar').load('/account/status');
 })

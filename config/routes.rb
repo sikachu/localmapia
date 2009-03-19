@@ -13,7 +13,8 @@ ActionController::Routing::Routes.draw do |map|
   #   map.resources :products
   map.resource :session, :only => [:new, :create, :destroy]
   map.resources :locations, :new => [:step1, :step2]
-  map.resource :account, :path_names => { :new => 'register' }
+  map.resource :account, :path_names => { :new => 'register' }, :member => { :status => :get }
+  map.activate "account/activate/:id", :controller => "accounts", :action => "activate"
   
   map.login "login", :controller => "sessions", :action => "new"
   map.logout "logout", :controller => "sessions", :action => "destroy"

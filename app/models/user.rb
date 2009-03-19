@@ -31,7 +31,15 @@ class User < ActiveRecord::Base
   end
   
   def activate!
-    self[:activation_key] = nil
+    self.activation_key = nil
+    self.activated_at = Time.now
+    self.status = "normal"
+    self.save
+  end
+  
+  def update_login!
+    self.last_logged_in = Time.now
+    self.save
   end
   
   def displayname=(displayname)

@@ -19,6 +19,7 @@ config.action_mailer.raise_delivery_errors = false
 # use smtp for send email
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
+  :enable_starttls_auto => false,
   :tls => true,
   :address => 'smtp.gmail.com',
   :port => 587,

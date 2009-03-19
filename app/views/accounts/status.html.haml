@@ -1,0 +1,11 @@
+- if logged_in?
+  Welcome back
+  %strong= link_to @user.displayname, account_path
+  |
+  = link_to "Logout", logout_path
+- else
+  Hi there, please
+  = link_to "login", login_path
+  or
+  = link_to "register", new_account_path
+  to access your account

@@ -54,7 +54,11 @@ module Authentication
   # This should be included in User model
   module Model
     def auto_login_hash
-      @auto_login_hash ||= Digest::SHA1.hexdigest("#{email}#{id}#{created_at}")
+      unless self[:auto_login_hash]
+        self[:auto_login_hash] = Digest::SHA1.hexdigest("#{email}#{id}#{created_at}")
+        self.save
+      end
+      self[:auto_login_hash]
     end
   end
   
@@ -77,6 +81,7 @@ module Authentication
         end
       if @user and @user.password == params[:password]
         @session[:user_id] = @user.id
+        @user.update_login!
         if params[:remember_me]
           @cookies["_userid"] = { :value => @user.id.to_s, :expires => 1.year.from_now }
           @cookies["_hash"] = { :value => @user.auto_login_hash, :expires => 1.year.from_now }

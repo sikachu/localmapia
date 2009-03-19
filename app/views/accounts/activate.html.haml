@@ -1,0 +1,14 @@
+- content_for :headline do
+  %h2 Activation
+  .tagline Activate your account for the first time
+  
+- one_column do
+  - if @u
+    = content_block :activation_complete do
+      Your account has been activated! Now you can share your locations, feedbacks, photos, and rating with us at your will. Thank you for being part of our website. :)
+      .hr
+  - else
+    = content_block :unable_to_process_your_activation do
+      Sorry, but we can't find the account to be activated by your given activation code. Please try to click the link from the E-Mail to prevent typing error, or please check back that each character has been entered correctly. If you need help, please contact us.
+      .hr
+  
