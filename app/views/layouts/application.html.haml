@@ -1,0 +1,71 @@
+!!!
+%html{html_attrs(:th_TH)}
+  %head
+    %title= @page_title || "LocalMapia"
+    = javascript_include_tag :defaults, :cache => true
+    = yield :javascript
+    = stylesheet_link_tag :all, :cache => true
+  %body
+    #header
+      .pad
+        .floatleft
+          %h1
+            %a{:href => "/"}
+              %span
+              LocalMapia
+          .tagline Search, browse, and share locations in Thailand
+        .floatright
+          #user_bar
+            = link_to "Your account", account_path
+          #top_navigation
+            = link_to "<span></span>Search", "", :class => "search"
+            = link_to "<span></span>Browse", "", :class => "browse"
+            = link_to "<span></span>Share", new_location_path, :class => "share"
+            .clear
+        .clear
+    - if yield :headline
+      #headline-container
+        #headline
+          .pad
+            = yield :headline
+    #wrapper
+      .pad
+        = yield
+    #footer-container
+      #footer
+        .pad
+          .heading NAVIGATION:
+          .content
+            = link_to "Search"
+            |
+            = link_to "Browse"
+            |
+            = link_to "Share"
+            |
+            = link_to "Featured Places"
+            |
+            = link_to "Recommended Events"
+          .heading YOUR ACCOUNT:
+          .content
+            = link_to "Dashboard"
+            |
+            = link_to "Messages"
+            |
+            = link_to "Setting"
+          .heading MORE:
+          .content
+            = link_to "Our Blog"
+            |
+            = link_to "Developers"
+            |
+            = link_to "Help Forum"
+            |
+            = link_to "FAQ and Support"
+          .clear
+          #copyright
+            &copy; 2009 
+            = link_to "Prem Sichanugrist and Sittidej Thongkum,"
+            as senior project for
+            = link_to "B.Sc.", "http://en.wikipedia.org/wiki/Bachelor_of_Science", :target => "_blank"
+            at
+            = link_to "King Mongkut Institute of Technology Ladkrabang", "http://www.kmitl.ac.th", :target => "_blank"

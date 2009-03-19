@@ -1,0 +1,10 @@
+- form_for @u, :url => account_path, :html => {:class => :formatted} do |f|
+  .spaceh10
+  = f.field_for :email, :below => "This will be your login name", :error => @u.errors.on(:email)
+  = f.field_for :password, :type => :password_field, :below => "6-16 characters, try to make it hard to guess", :error => @u.errors.on(:password)
+  = f.field_for :password_confirmation, :type => :password_field, :label => "Confirmation", :below => "Type in your password again", :required => true, :error => @u.errors.on(:password_confirmation)
+  = f.field_for :displayname, :label => "Display name", :below => "This will be shown when you're posing data", :error => @u.errors.on(:displayname)
+  = f.row "By clicking \"Register\" you're confirm that you have read and accept Terms &amp; Conditions for using our website."
+  .spaceh5
+  = f.submit_row "Register"
+  .spaceh5

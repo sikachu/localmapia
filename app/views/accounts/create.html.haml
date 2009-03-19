@@ -1,0 +1,16 @@
+- content_for :headline do
+  %h2 Registration successful
+  .tagline Thank you for your registration information.
+
+- one_column do
+  = content_block do
+    .tip.floatright
+      %strong Why do I need to activate my account?
+      %p
+        %small To ensure that the E-Mail address you have given to us is valid, and you're really exist, we need every account to be activated first before they can be used to post information on LocalMapia.
+    %p Thank you for your registration information.
+    %p== An activation E-Mail has been sent to #{@u.email} with a link for activates your account. After you activate your account, you'll be able to participate in LocalMapia.
+    .clear
+    .spaceh5
+    .hr
+    

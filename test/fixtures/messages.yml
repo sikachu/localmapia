@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  from_id: 1
+  to_id: 1
+  title: MyString
+  content: MyText
+  status: MyString
+
+two:
+  from_id: 1
+  to_id: 1
+  title: MyString
+  content: MyText
+  status: MyString

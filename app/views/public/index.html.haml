@@ -1,0 +1,82 @@
+- content_for :headline do
+  .showcase.search
+    .image
+    Search for a location by keyword
+  .showcase.browse
+    .image
+    Browse for a location by category
+  .showcase.share
+    .image
+    Share new location you know
+  .clear
+      
+- two_columns do
+  = content_block :featured_place do
+    - 3.times do
+      .item
+        .photo
+          = image_tag "map.png"
+        %h3= link_to "Robinson Ratchada"
+        %small
+          in
+          = link_to "Department Stores"
+        .spaceh10
+        .content
+          The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words.
+          = link_to "more ..."
+        .clear
+        .hr
+  = content_block :recommended_events do
+    - 3.times do
+      .item
+        .photo
+          = image_tag "map.png"
+        %h3= link_to "Commart Comtech 2009"
+        %small
+          %span= pluralize(6, "member")
+          are going to this event
+          %br
+          in
+          = link_to "Exhibitions"
+          &gt;
+          = link_to "IT"
+          %br
+          at
+          = link_to "Queen Sirikij National Convention Centre"
+        .spaceh10
+        .content
+          The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words.
+          = link_to "more ..."
+        .clear
+        .hr
+.spaceh5
+
+- three_columns do
+  = content_block :recently_added do
+    %ul
+      - [["Oishi Resturant", "Food &amp; Dining", "Japanese"], ["King Mongkut's Institute of Technology Ladkrabang", "Education", "University"], ["Oishi Resturant", "Food &amp; Dining", "Japanese"], ["Oishi Resturant", "Food &amp; Dining", "Japanese"], ["Oishi Resturant", "Food &amp; Dining", "Japanese"]].each do |x,y,z|
+        %li
+          %h3= link_to x
+          %small
+            in
+            = link_to y
+            &gt;
+            = link_to z
+  = content_block :updated_location do
+    %ul
+      - [["Oishi Resturant", "Food &amp; Dining", "Japanese"], ["King Mongkut's Institute of Technology Ladkrabang", "Education", "University"], ["Oishi Resturant", "Food &amp; Dining", "Japanese"], ["Oishi Resturant", "Food &amp; Dining", "Japanese"], ["Oishi Resturant", "Food &amp; Dining", "Japanese"]].each do |x,y,z|
+        %li
+          %h3= link_to x
+          %small
+            in
+            = link_to y
+            &gt;
+            = link_to z
+  = content_block :top_contributors do
+    %ul
+      - %w(Sittidej Sikachu John Jenny Nikkie).each do |x,y,z|
+        %li
+          %h3= link_to x
+          %small
+            40 pages, joined 07-Jan-09
+    

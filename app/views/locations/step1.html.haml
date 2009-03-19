@@ -1,0 +1,19 @@
+- content_for :javascript do
+  \<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAA5RYDLPaKhW2QNe3PCbkgeRQjzcZF9Kky9HSyNvh_bDrFKFpjWBQEnjmBUO8X6n13_xXkbfpaxhGzMQ&hl=en" type="text/javascript"></script>
+  = javascript_include_tag "map-select"
+
+- content_for :headline do
+  %h2 Add new location
+  .tagline
+    Navigate to the location you want to add on the map, then click "Mark Region" to draw a region over it.
+    %br
+    %small (Note: Please mark the location by using the Map, not Satellite images.)
+        
+
+#fullcontent
+  - form_for @location do |f|
+    .right
+      = button_to_function "Mark Region", "alert('Hello world!')"
+      = submit_tag "Next &raquo;"
+    #add-location-map
+          

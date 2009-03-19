@@ -1,0 +1,307 @@
+body, td, th, div {
+  font-family: "Lucida Grande", Tahoma, "Sans Serif";
+  font-size: 12px;
+  margin: 0;
+  padding: 0; }
+
+h1, h2, h3 {
+  margin: 0;
+  padding: 0; }
+
+.pad {
+  padding: 5px; }
+
+.floatleft {
+  float: left; }
+
+.floatright {
+  float: right; }
+
+.clear {
+  clear: both; }
+
+.right {
+  text-align: right; }
+
+h1 {
+  font-size: 35px; }
+
+h3 {
+  font-weight: normal; }
+
+.hr_head {
+  height: 5px;
+  background: #C5E885; }
+
+.hr {
+  height: 1px;
+  background: #C5E885;
+  margin: 5px 0; }
+
+.tip {
+  width: 250px;
+  border: 1px solid #999;
+  padding: 10px 10px 0 10px; }
+  .tip strong {
+    color: #333; }
+
+a {
+  color: #333; }
+
+#notice {
+  padding: 5px;
+  border: 1px solid #e7e925;
+  background: #ffc;
+  margin: 0 5px; }
+
+#error {
+  padding: 5px;
+  border: 1px solid #f00;
+  background: #fcc;
+  margin: 0 5px; }
+
+.spaceh5 {
+  height: 5px; }
+
+.spaceh10 {
+  height: 10px; }
+
+.spaceh15 {
+  height: 15px; }
+
+.spaceh20 {
+  height: 20px; }
+
+#header, #wrapper, #headline, #footer {
+  width: 770px;
+  margin: 0 auto; }
+  #header>.pad,   #wrapper>.pad,   #headline>.pad,   #footer>.pad {
+    padding: 5px 20px; }
+
+#header .floatright {
+  text-align: right; }
+  #header .floatright a:link, #header .floatright a:visited {
+    text-decoration: none; }
+  #header .floatright a:active, #header .floatright a:hover {
+    text-decoration: underline; }
+#header #top_navigation {
+  margin-top: 12px;
+  width: 414px; }
+  #header #top_navigation a {
+    display: block;
+    width: 128px;
+    height: 44px;
+    float: left;
+    margin-left: 10px;
+    position: relative; }
+    #header #top_navigation a span {
+      background: url('/images/localmapia.png') -336px 0 no-repeat;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0; }
+    #header #top_navigation a.browse span {
+      background-position: -464px 0; }
+    #header #top_navigation a.share span {
+      background-position: -592px 0; }
+#header h1 {
+  margin-top: 5px;
+  width: 260px;
+  height: 45px;
+  position: relative; }
+  #header h1 span {
+    background: url('/images/localmapia.png') top left no-repeat;
+    position: absolute;
+    width: 100%;
+    height: 100%; }
+
+#header, #wrapper {
+  background: url('/images/background.png') -770px 0 repeat-y; }
+
+#headline-container {
+  background: #cbffcc; }
+
+#headline {
+  background: url('/images/background.png') top left repeat-y; }
+  #headline .showcase {
+    text-align: center;
+    float: left;
+    width: 243px;
+    font-size: 13;
+    margin: 10px 0 20px 0; }
+  #headline .image {
+    width: 160px;
+    height: 200px;
+    background: url('/images/localmapia.png') no-repeat;
+    margin: 0 41px 10px 42px; }
+  #headline .search .image {
+    background-position: 0 -70px; }
+  #headline .browse .image {
+    background-position: -160px -70px; }
+  #headline .share .image {
+    background-position: -320px -70px; }
+  #headline h2 {
+    font-size: 24px;
+    font-weight: normal;
+    margin: 5px 0; }
+  #headline .tagline {
+    font-size: 14px;
+    margin-bottom: 10px; }
+  #headline small {
+    color: #666; }
+
+#footer-container {
+  background: #71CEF5 url('/images/footer.png') 0 -105px repeat-x; }
+  #footer-container #footer {
+    background: url('/images/footer.png') no-repeat;
+    height: 105px;
+    color: #fff; }
+    #footer-container #footer .pad {
+      padding: 10px 20px 0 20px; }
+    #footer-container #footer .heading, #footer-container #footer .content {
+      float: left;
+      height: 16px; }
+    #footer-container #footer .heading {
+      width: 120px; }
+    #footer-container #footer .content a,     #footer-container #footer #copyright a {
+      color: #fff; }
+      #footer-container #footer .content a:link, #footer-container #footer .content a:visited,       #footer-container #footer #copyright a:link, #footer-container #footer #copyright a:visited {
+        text-decoration: none; }
+      #footer-container #footer .content a:hover, #footer-container #footer .content a:active,       #footer-container #footer #copyright a:hover, #footer-container #footer #copyright a:active {
+        text-decoration: underline; }
+    #footer-container #footer .content {
+      width: 500px; }
+    #footer-container #footer #copyright {
+      margin-top: 30px;
+      font-size: 11px; }
+      #footer-container #footer #copyright a {
+        font-size: 11px; }
+
+#wrapper .pad {
+  padding: 5px 10px; }
+#wrapper #fullcontent {
+  padding: 0 10px; }
+
+.block {
+  float: left;
+  margin: 5px; }
+  .block.column_2 {
+    width: 365px; }
+  .block.column_3 {
+    width: 240px; }
+  .block h2.title {
+    color: #174095;
+    font-size: 18px;
+    font-weight: normal;
+    margin: 5px 2px; }
+  .block>.content {
+    padding: 0 3px; }
+  .block a {
+    color: #666;
+    text-decoration: underline; }
+  .block h3 a {
+    font-size: 18px;
+    font-weight: normal;
+    margin-top: 2px;
+    color: #000; }
+    .block h3 a:link, .block h3 a:visited {
+      text-decoration: none; }
+    .block h3 a:hover, .block h3 a:active {
+      text-decoration: underline; }
+  .block small {
+    font-size: 11px;
+    color: #999; }
+    .block small a {
+      font-size: 11px; }
+    .block small span {
+      color: #666;
+      font-size: 11px; }
+  .block ul {
+    padding: 0;
+    margin: 10px 0 0 20px; }
+    .block ul li {
+      color: #174095;
+      font-size: 120%;
+      line-height: 110%;
+      margin-bottom: 5px; }
+      .block ul li span {
+        color: #000; }
+      .block ul li h3 a {
+        font-size: 14px; }
+  .block .item {
+    padding-top: 4px; }
+    .block .item .photo {
+      float: right;
+      border: 1px solid #999;
+      margin: 0 0 2px 2px; }
+    .block .item .content {
+      color: #666; }
+
+form.formatted {
+  font-size: 12px;
+  width: 350px; }
+  form.formatted input, form.formatted textarea, form.formatted select {
+    font-size: 12px; }
+  form.formatted select {
+    margin: 5px 0; }
+  form.formatted .row>label, form.formatted .row>.field_space {
+    width: 100px;
+    float: left;
+    margin: 5px 0;
+    text-align: right;
+    font-size: 14px; }
+  form.formatted input.half {
+    width: 150px; }
+  form.formatted input.full {
+    width: 300px; }
+  form.formatted textarea.half {
+    width: 300px;
+    height: 120px; }
+  form.formatted textarea.full {
+    width: 350px;
+    height: 200px; }
+  form.formatted .field {
+    line-height: 18px;
+    width: 240px;
+    float: left;
+    margin-left: 10px; }
+    form.formatted .field.pad {
+      margin: 5px 0; }
+  form.formatted .row {
+    clear: both;
+    margin-top: 5px; }
+  form.formatted .after, form.formatted .below {
+    font-size: 11px;
+    color: #666; }
+    form.formatted .after.error,     form.formatted .below.error {
+      color: #f00; }
+  form.formatted .below {
+    width: 245px; }
+  form.formatted span.required_field {
+    color: red;
+    position: relative;
+    top: -4px;
+    left: 3px;
+    margin-right: 3px; }
+  form.formatted .center {
+    text-align: center; }
+  form.formatted .displaynone {
+    display: none; }
+  form.formatted .fieldWithErrors {
+    display: inline; }
+
+#fullcontent form.formatted {
+  width: 700px; }
+  #fullcontent form.formatted .row>label, #fullcontent form.formatted .row>.field_space {
+    width: 150px; }
+  #fullcontent form.formatted input.half {
+    width: 200px; }
+  #fullcontent form.formatted input.full {
+    width: 400px; }
+  #fullcontent form.formatted .field {
+    width: 500px; }
+
+#add-location-map {
+  margin: 10px 0;
+  width: 730px;
+  height: 500px; }

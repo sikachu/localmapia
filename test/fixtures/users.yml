@@ -1,0 +1,29 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  email: MyString
+  password: MyString
+  salt: MyString
+  displayname: MyString
+  city: MyString
+  province: MyString
+  country: MyString
+  status: MyString
+  activation_key: MyString
+  activated_at: 2009-01-18 21:25:06
+  password_reset_key: MyString
+  last_logged_in: 2009-01-18
+
+two:
+  email: MyString
+  password: MyString
+  salt: MyString
+  displayname: MyString
+  city: MyString
+  province: MyString
+  country: MyString
+  status: MyString
+  activation_key: MyString
+  activated_at: 2009-01-18 21:25:06
+  password_reset_key: MyString
+  last_logged_in: 2009-01-18

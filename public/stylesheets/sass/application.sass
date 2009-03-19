@@ -1,0 +1,336 @@
+//
+// Essential functions
+//
+body, td, th, div
+  :font-family "Lucida Grande", Tahoma, "Sans Serif"
+  :font-size 12px
+  :margin 0
+  :padding 0
+  
+h1,h2,h3
+  :margin 0
+  :padding 0
+
+.pad
+  :padding 5px
+
+.floatleft
+  :float left
+.floatright
+  :float right
+.clear
+  :clear both
+.right
+  :text-align right
+  
+h1
+  :font-size 35px
+h3
+  :font-weight normal
+  
+.hr_head
+  :height 5px
+  :background #C5E885
+.hr
+  :height 1px
+  :background #C5E885
+  :margin 5px 0
+  
+.tip
+  :width 250px
+  :border 1px solid #999
+  :padding 10px 10px 0 10px
+  strong
+    :color #333
+  
+a
+  :color #333
+  
+#notice
+  :padding 5px
+  :border 1px solid #e7e925
+  :background #ffc
+  :margin 0 5px
+
+#error
+  :padding 5px
+  :border 1px solid #f00
+  :background #fcc
+  :margin 0 5px
+  
+.spaceh5
+  :height 5px
+.spaceh10
+  :height 10px
+.spaceh15
+  :height 15px
+.spaceh20
+  :height 20px
+
+//
+// Main layouts
+//
+#header, #wrapper, #headline, #footer
+  :width 770px
+  :margin 0 auto
+  &>.pad
+    :padding 5px 20px
+
+#header 
+  .floatright
+    :text-align right
+    a
+      &:link, &:visited
+        :text-decoration none
+      &:active, &:hover
+        :text-decoration underline
+  #top_navigation
+    :margin-top 12px
+    :width 414px
+    a
+      :display block
+      :width 128px
+      :height 44px
+      :float left
+      :margin-left 10px
+      :position relative
+      span
+        :background url('/images/localmapia.png') -336px 0 no-repeat
+        :position absolute
+        :width 100%
+        :height 100%
+        :left 0
+      &.browse span
+        :background-position -464px 0
+      &.share span
+        :background-position -592px 0
+  h1
+    :margin-top 5px
+    :width 260px
+    :height 45px
+    :position relative
+    span
+      :background url('/images/localmapia.png') top left no-repeat
+      :position absolute
+      :width 100%
+      :height 100%
+    
+#header, #wrapper
+  :background url('/images/background.png') -770px 0 repeat-y
+#headline-container
+  :background #cbffcc
+
+#headline
+  :background url('/images/background.png') top left repeat-y
+  .showcase
+    :text-align center
+    :float left
+    :width 243px
+    :font-size 13
+    :margin 10px 0 20px 0
+  .image
+    :width 160px
+    :height 200px
+    :background url('/images/localmapia.png') no-repeat
+    :margin 0 41px 10px 42px
+  .search .image
+    :background-position 0 -70px
+  .browse .image
+    :background-position -160px -70px
+  .share .image
+    :background-position -320px -70px
+  h2
+    :font-size 24px
+    :font-weight normal
+    :margin 5px 0
+  .tagline
+    :font-size 14px
+    :margin-bottom 10px
+  small
+    :color #666
+
+#footer-container
+  :background #71CEF5 url('/images/footer.png') 0 -105px repeat-x
+  #footer
+    :background url('/images/footer.png') no-repeat
+    :height 105px
+    :color #fff
+    .pad
+      :padding 10px 20px 0 20px
+    .heading, .content
+      :float left
+      :height 16px
+    .heading
+      :width 120px
+    .content, #copyright
+      a
+        :color #fff
+        &:link, &:visited
+          :text-decoration none
+        &:hover, &:active
+          :text-decoration underline
+    .content
+      :width 500px
+      
+    #copyright
+      :margin-top 30px
+      :font-size 11px
+      a
+        :font-size 11px
+
+#wrapper
+  .pad
+    :padding 5px 10px
+  #fullcontent
+    :padding 0 10px
+    
+.block
+  :float left
+  :margin 5px
+  &.column_2
+    :width 365px
+  &.column_3
+    :width 240px
+    
+  h2.title
+    :color #174095
+    :font-size 18px
+    :font-weight normal
+    :margin 5px 2px
+  &>.content
+    :padding 0 3px
+  a
+    :color #666
+    :text-decoration underline
+  h3 a
+    :font-size 18px
+    :font-weight normal
+    :margin-top 2px
+    :color #000
+    &:link, &:visited
+      :text-decoration none
+    &:hover, &:active
+      :text-decoration underline
+  small
+    :font-size 11px
+    :color #999
+    a
+      :font-size 11px
+    span
+      :color #666
+      :font-size 11px
+  
+  ul
+    :padding 0
+    :margin 10px 0 0 20px
+    li
+      :color #174095
+      :font-size 120%
+      :line-height 110%
+      :margin-bottom 5px
+      span
+        :color #000
+      h3 a
+        :font-size 14px
+  
+  .item
+    :padding-top 4px
+    .photo
+      :float right
+      :border 1px solid #999
+      :margin 0 0 2px 2px
+    .content
+      :color #666
+
+//
+// Form
+//
+form.formatted
+  :font-size 12px
+  :width 350px
+  
+  input, textarea, select
+    :font-size 12px
+    
+  select
+    :margin 5px 0
+    
+  .row>label, .row>.field_space
+    :width 100px
+    :float left
+    :margin 5px 0
+    :text-align right
+    :font-size 14px
+    
+  input
+    &.half
+      :width 150px
+    &.full
+      :width 300px
+    
+  textarea
+    &.half
+      :width 300px
+      :height 120px
+    &.full
+      :width 350px
+      :height 200px
+  
+  .field
+    :line-height 18px
+    :width 240px
+    :float left
+    :margin-left 10px
+    &.pad
+      :margin 5px 0
+  
+  .row
+    :clear both
+    :margin-top 5px
+  
+  .after, .below
+    :font-size 11px
+    :color #666
+    &.error
+      :color #f00
+  
+  .below
+    :width 245px
+  
+  span.required_field
+    :color red
+    :position relative
+    :top -4px
+    :left 3px
+    :margin-right 3px
+  
+  .center
+    :text-align center
+  
+  .displaynone
+    :display none
+    
+  .fieldWithErrors
+    :display inline
+        
+// Override for those full-page
+#fullcontent form.formatted
+  :width 700px
+  .row>label, .row>.field_space
+    :width 150px
+  input
+    &.half
+      :width 200px
+    &.full
+      :width 400px
+  .field
+    :width 500px
+        
+//
+// Add location
+//
+#add-location-map
+  :margin 10px 0
+  :width 730px
+  :height 500px
+    

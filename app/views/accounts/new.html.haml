@@ -1,0 +1,9 @@
+- content_for :headline do
+  %h2 Register a new account
+  .tagline Please fill in some information below
+  
+#fullcontent
+  - unless @u.errors.count.zero?
+    #error{:style => "margin: 0"}
+      There are some errors with your registration. Please review your registration below.
+  = render "new"

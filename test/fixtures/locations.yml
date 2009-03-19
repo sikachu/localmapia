@@ -1,0 +1,31 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  parent_id: 1
+  title: MyString
+  description: MyText
+  lat: 1.5
+  lng: 1.5
+  city: MyString
+  province: MyString
+  country: MyString
+  status: MyString
+  score: 1
+  vote_count: 1
+  additional_info: MyText
+
+two:
+  user_id: 1
+  parent_id: 1
+  title: MyString
+  description: MyText
+  lat: 1.5
+  lng: 1.5
+  city: MyString
+  province: MyString
+  country: MyString
+  status: MyString
+  score: 1
+  vote_count: 1
+  additional_info: MyText

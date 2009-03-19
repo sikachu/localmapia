@@ -1,0 +1,23 @@
+- content_for :headline do
+  %h2 Login to your account
+  .tagline
+    Or if you don't have the account, just fill up registration form
+        
+- two_columns do
+  = render "layouts/notice"
+  = content_block :already_have_an_account? do
+    - form_for :session, :url => session_path, :html => {:class => :formatted} do |f|
+      Use this form to access your account
+      .spaceh10
+      = f.field_for :email
+      = f.field_for :password, :type => :password_field
+      = f.check_box_for :remember_me, :after => "<label for='session_remember_me'>Remember login?</label>"
+      = hidden_field_tag :to, params[:to]
+      = f.submit_row "Submit"
+      .spaceh5
+    .hr
+      
+  = content_block :register_a_new_account do
+    It just as simple as fill out these information, then confirm your E-Mail address via the link in your E-Mail
+    = render "accounts/new"
+    .hr
