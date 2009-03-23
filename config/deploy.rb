@@ -33,11 +33,11 @@ namespace :thin do
   %w(start stop restart).each do |action| 
   desc "#{action} the app's Thin Cluster"  
     task action.to_sym, :roles => :app do  
-      run "thin #{action} -c #{deploy_to}/current -C /etc/thin/localmapia.yml" 
+      sudo "thin #{action} -c #{deploy_to}/current -C /etc/thin/localmapia.yml" 
     end
   end
 end
 
 after "deploy:update_code" do
-  run "rm #{release_path}/config/database.yml && ln -s #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+  run "ln -s #{shared_path}/config/database.yml #{release_path}/config/database.yml"
 end
