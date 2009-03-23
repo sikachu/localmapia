@@ -1,19 +1,26 @@
 - content_for :javascript do
   \<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAA5RYDLPaKhW2QNe3PCbkgeRQjzcZF9Kky9HSyNvh_bDrFKFpjWBQEnjmBUO8X6n13_xXkbfpaxhGzMQ&hl=en" type="text/javascript"></script>
   = javascript_include_tag "map-select"
+  :javascript
+    $(document).ready(function(){
+      if(GBrowserIsCompatible()){
+        initialize_map(#{session[:location].nil? ? 13.751724 : session[:location].lat}, #{session[:location].nil? ? 100.506706 : session[:location].lng}, #{session[:location].nil? ? 12 : 16});
+      }
+    });
 
 - content_for :headline do
-  %h2 Add new location
+  %h2 Add new location: Step 1 of 3
   .tagline
     Navigate to the location you want to add on the map, then click "Mark Region" to draw a region over it.
     %br
-    %small (Note: Please mark the location by using the Map, not Satellite images.)
-        
+    %br
+    %small Please mark the location by using the Map, not Satellite images, and after you zoomed in almost closest. The 'Mark Region' button will be enabled after you reach a suitable level.
 
 #fullcontent
   - form_for @location do |f|
     .right
-      = button_to_function "Mark Region", "alert('Hello world!')"
-      = submit_tag "Next &raquo;"
+      = button_to_function "Mark Region", "", :disabled => true, :id => "mark_region_button"
+      = button_to_function "Reset", "", :disabled => true, :id => "reset_region_button"
+      = submit_tag "Next &raquo;", :disabled => true, :id => "submit_button"
     #add-location-map
           

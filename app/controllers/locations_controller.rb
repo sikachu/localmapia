@@ -9,14 +9,26 @@ class LocationsController < ApplicationController
   end
 
   def step1
-    @location = Location.new(session[:location])
+    @location = Location.new
   end
 
   def step2
-    @location = Location.new(session[:location])
+    redirect_to :action => "step1" unless session[:location]
+    @location = session[:location]
+    @first_level_categories = Category.first_level.for_location
+    @second_level_categories = Category.second_level(@first_level_categories.first.id).for_location rescue []
   end
 
   def create
+    if params[:location][:latlng].present? # From step 1
+      session[:location] = Location.new(params[:location])
+      redirect_to :action => "step2"
+    else
+      session[:location].attributes = params[:location]
+      unless session[:location].save
+        redirect_to :action => "step2"
+      end
+    end
   end
 
   def show
@@ -38,7 +50,6 @@ class LocationsController < ApplicationController
       flash[:notice] = "You're just one step away from adding new location. Please login or register below:"
       redirect_to login_path
     end
-    @location = Location.new(session[:location])
   end
 
 end

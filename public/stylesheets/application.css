@@ -305,3 +305,23 @@ form.formatted {
   margin: 10px 0;
   width: 730px;
   height: 500px; }
+
+#new_location_2 .field {
+  font-size: 16px;
+  margin: 10px 0; }
+  #new_location_2 .field input {
+    font-size: 14px;
+    width: 300px;
+    margin-top: 5px; }
+  #new_location_2 .field #category_selection {
+    margin-top: 5px;
+    font-size: 14px; }
+  #new_location_2 .field textarea {
+    font-size: 14px;
+    margin-top: 5px;
+    width: 300px;
+    height: 200px; }
+  #new_location_2 .field label {
+    font-size: 16px; }
+#new_location_2 .floatright {
+  margin: 0 5px; }

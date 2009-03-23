@@ -1,2 +1,42 @@
-<h1>Locations#step2</h1>
-<p>Find me in app/views/locations/step2.html.erb</p>
+- content_for :javascript do
+  \<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAA5RYDLPaKhW2QNe3PCbkgeRQjzcZF9Kky9HSyNvh_bDrFKFpjWBQEnjmBUO8X6n13_xXkbfpaxhGzMQ&hl=en" type="text/javascript"></script>
+  = javascript_include_tag "map-show"
+  :javascript
+    $(document).ready(function(){
+      initialize_map(#{@location.lat}, #{@location.lng}, [#{@location.regions_for_google}])
+    });
+
+- content_for :headline do
+  %h2 Add new location
+  .tagline Please give us more detail about this location
+
+- form_for @location, :html => { :id => "new_location_2"} do |f|
+  - two_columns do
+    = content_block :information_about_location do
+      .field
+        .label= f.label :title, "Location's name"
+        .input= f.text_field :title
+        .error= "Location's name #{@location.errors.on(:title)}" if @location.errors.on(:title)
+      .field
+        = f.label :categories
+        #selected_categories
+        #category_selection
+          = collection_select :category, :first_level, @first_level_categories, :id, :name
+          = collection_select :category, :second_level, @second_level_categories, :id, :name
+          = link_to_function "+", "add_category"
+      .field
+        .label= f.label :description
+        .input= f.text_area :description
+        .error= "Description #{@location.errors.on(:description)}" if @location.errors.on(:description)
+      .field
+        .label= f.label :tags
+        .input= f.text_field :tags
+        .error= "Tags #{@location.errors.on(:tags)}" if @location.errors.on(:tags)
+    
+    = content_block :map do
+      #map-display{:style => "width: 358px; height: 355px; border: 1px solid #999"}
+  
+    .clear
+    .floatright
+      = button_to_function "&laquo; Back", "window.location.href='#{new_location_path}'"
+      = f.submit "Next &raquo;"
