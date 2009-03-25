@@ -71,11 +71,12 @@ class LocationsController < ApplicationController
   end
   
   def load_location
-    @location = if params[:id][/[0-9]+/]
+    @location = if params[:id][/^[0-9]+$/]
         Location.find(params[:id])
       else
         Location.find_by_permalink!(params[:id])
       end
+    redirect_to location_permalink(@location), :status => 301 if params[:id][/^[0-9]+$/] and params[:action] == "show"
   end
 
 end

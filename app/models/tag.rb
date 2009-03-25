@@ -1,3 +1,12 @@
+# == Schema Information
+# Schema version: 20090325065024
+#
+# Table name: tags
+#
+#  id   :integer(4)      not null, primary key
+#  name :string(255)
+#
+
 class Tag < ActiveRecord::Base
   has_and_belongs_to_many :locations
   has_and_belongs_to_many :events

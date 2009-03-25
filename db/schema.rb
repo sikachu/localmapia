@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090325065024) do
+ActiveRecord::Schema.define(:version => 20090325121250) do
 
   create_table "categories", :force => true do |t|
     t.integer "parent_id"
@@ -125,8 +125,6 @@ ActiveRecord::Schema.define(:version => 20090325065024) do
     t.string   "province"
     t.string   "country"
     t.string   "status"
-    t.integer  "score"
-    t.integer  "vote_count"
     t.text     "additional_info"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -218,6 +216,15 @@ ActiveRecord::Schema.define(:version => 20090325065024) do
   create_table "users_friends", :id => false, :force => true do |t|
     t.integer "user_id"
     t.integer "friend_id"
+  end
+
+  create_table "votes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "score"
   end
 
 end

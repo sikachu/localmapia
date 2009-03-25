@@ -26,6 +26,9 @@ h1, h2, h3 {
 .center {
   text-align: center; }
 
+.displaynone {
+  display: none; }
+
 .leftcontent, .rightcontent {
   width: 370px;
   float: left;
@@ -254,6 +257,13 @@ a {
       margin: 0 0 2px 2px; }
     .block .item .content {
       color: #666; }
+  .block .content h3 {
+    font-size: 15px;
+    color: #174095;
+    margin-bottom: 5px; }
+  .block .new_feedback textarea {
+    width: 355px;
+    height: 150px; }
 
 form.formatted {
   font-size: 12px;
@@ -357,7 +367,7 @@ form.new_location .notice, form.edit_location .notice {
 
 .rating {
   margin: 0 auto;
-  width: 200px; }
+  width: 180px; }
   .rating .floatleft {
     font-size: 14px;
     padding-top: 5px; }
@@ -367,6 +377,9 @@ form.new_location .notice, form.edit_location .notice {
     float: left;
     margin-left: 5px;
     background: url('/images/localmapia.png') -614px -230px no-repeat; }
+    .rating .stars.not_voted {
+      cursor: hand;
+      cursor: pointer; }
     .rating .stars.stars-10 {
       background-position: -589px -230px; }
     .rating .stars.stars-20 {
@@ -440,3 +453,10 @@ form.new_location .notice, form.edit_location .notice {
   font-size: 14px; }
   #description_block .content h1, #description_block .content h2, #description_block .content h3, #description_block .content h4 {
     font-size: 14px; }
+
+form#new_tag .field {
+  padding-top: 5px;
+  font-size: 14px; }
+  form#new_tag .field #tag_name {
+    width: 180px;
+    font-size: 13px; }

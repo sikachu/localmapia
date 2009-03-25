@@ -24,6 +24,8 @@ h1,h2,h3
   :text-align right
 .center
   :text-align center
+.displaynone
+  :display none
 
 .leftcontent, .rightcontent
   :width 370px
@@ -259,6 +261,15 @@ a
     .content
       :color #666
 
+  .content h3
+    :font-size 15px
+    :color #174095
+    :margin-bottom 5px
+  .new_feedback textarea
+    :width 355px
+    :height 150px
+    
+
 //
 // Form
 //
@@ -388,11 +399,14 @@ form.new_location, form.edit_location
 //
 .rating
   :margin 0 auto
-  :width 200px
+  :width 180px
   .floatleft
     :font-size 14px
     :padding-top 5px
   .stars
+    &.not_voted
+      :cursor hand
+      :cursor pointer
     :width 125px
     :height 25px
     :float left
@@ -465,3 +479,11 @@ form.new_location, form.edit_location
   // Avoid the header tags in the content block
   h1, h2, h3, h4
     :font-size 14px
+
+form#new_tag
+  .field
+    :padding-top 5px
+    :font-size 14px
+    #tag_name
+      :width 180px
+      :font-size 13px

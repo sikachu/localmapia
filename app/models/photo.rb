@@ -1,3 +1,19 @@
+# == Schema Information
+# Schema version: 20090325065024
+#
+# Table name: photos
+#
+#  id           :integer(4)      not null, primary key
+#  user_id      :integer(4)
+#  location_id  :integer(4)
+#  event_id     :integer(4)
+#  album_type   :string(255)
+#  photo_url    :string(255)
+#  original_url :string(255)
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+
 class Photo < ActiveRecord::Base
   belongs_to :user
   belongs_to :location

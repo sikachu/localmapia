@@ -1,0 +1,4 @@
+alert("Thank you for your vote!");
+$('.rating .stars').attr('class', 'stars stars-<%= @location.stars %>').unbind('mousemove').unbind('mouseout');
+$('.rating .rating_text').html('(Rated by <%= pluralize @location.votes.count, "person" %>)');
+$('.rating, #loader').toggle();

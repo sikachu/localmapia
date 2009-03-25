@@ -1,3 +1,23 @@
+# == Schema Information
+# Schema version: 20090325065024
+#
+# Table name: events
+#
+#  id          :integer(4)      not null, primary key
+#  location_id :integer(4)
+#  name        :string(255)
+#  description :text
+#  url         :string(255)
+#  date_start  :date
+#  date_end    :date
+#  time_start  :time
+#  time_end    :time
+#  status      :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#  permalink   :string(255)
+#
+
 class Event < ActiveRecord::Base
   has_many :feedbacks
   has_many :photos

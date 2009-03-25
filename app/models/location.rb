@@ -1,15 +1,42 @@
+# == Schema Information
+# Schema version: 20090325065024
+#
+# Table name: locations
+#
+#  id              :integer(4)      not null, primary key
+#  user_id         :integer(4)
+#  parent_id       :integer(4)
+#  title           :string(255)
+#  description     :text
+#  lat             :float
+#  lng             :float
+#  city            :string(255)
+#  province        :string(255)
+#  country         :string(255)
+#  status          :string(255)
+#  score           :integer(4)
+#  vote_count      :integer(4)
+#  additional_info :text
+#  created_at      :datetime
+#  updated_at      :datetime
+#  permalink       :string(255)
+#  address         :string(255)
+#  version         :integer(4)
+#
+
 class Location < ActiveRecord::Base
   has_many :events, :dependent => :destroy
   has_many :feedbacks, :dependent => :destroy
   has_many :photos, :dependent => :destroy
   has_many :regions, :class_name => "LocationRegion", :dependent => :destroy
   has_many :children, :class_name => "Location", :foreign_key => :parent_id
+  has_many :votes, :as => :votable
   belongs_to :user
   belongs_to :parent, :class_name => "Location"
   has_and_belongs_to_many :categories, :join_table => "locations_categories"
   has_and_belongs_to_many :tags
   accepts_nested_attributes_for :categories
-  acts_as_versioned :if_changed => :description
+  acts_as_versioned
   
   STATUS = %w(hidden normal featured)
   before_validation :set_default_status
@@ -73,6 +100,28 @@ class Location < ActiveRecord::Base
   
   def thumbnail
     @thumbnail ||= "http://maps.google.com/staticmap?center=#{lat},#{lng}&zoom=15&size=100x100&markers=#{lat},#{lng}&key=#{GOOGLE_API_KEY}&sensor=false"
+  end
+  
+  def stars
+    unless @stars
+      stars = (score * 10 / votes.count)
+      puts stars.to_s[-1]
+      @stars = case stars.to_s[-1]
+        when 49..53; stars.to_i / 10 * 10 + 5
+        when 54..57; stars.to_i / 10 * 10 + 10
+        when 48; stars.to_i
+        else 0
+        end
+    end
+    @stars
+  end
+  
+  def score
+    @score ||= votes.sum(:score)
+  end
+  
+  def already_voted?(user)
+    votes.exists?(:user_id => user.id)
   end
   
   private
