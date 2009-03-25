@@ -13,7 +13,14 @@ ActionController::Routing::Routes.draw do |map|
   #   map.resources :products
   map.resource :session, :only => [:new, :create, :destroy]
   map.resources :locations, :new => [:step1, :step2], :collection => { :categories => :get } do |location|
-    location.resources :events, :shallow => true
+    location.resources :events, :shallow => true do |event|
+      event.resources :feedbacks
+      event.resources :photos
+      event.resources :tags
+      event.resources :votes
+      event.resources :watchers
+      event.resources :participations
+    end
     location.resources :feedbacks
     location.resources :photos
     location.resources :tags

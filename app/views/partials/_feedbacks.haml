@@ -1,0 +1,34 @@
+= content_block :feedback do
+  - if feedbacks.empty?
+    Nobody has given this location a feedback yet.
+    .hr
+  - else
+    - feedbacks.each do |feedback|
+      .item
+        %small
+          Posted by
+          = link_to feedback.user.displayname
+          on
+          = feedback.created_at.strftime("%B %d, %Y")
+        .spaceh10
+        .content.markdown{:style => "font-size: 12px !important;"}
+          :markdown
+            #{feedback.content}
+        = button_to "Remove", @event ? event_feedback_path(@event, feedback) : location_feedback_path(@location, feedback), :method => :delete, :class => "small-remove-button"
+        .spaceh5
+        .hr
+  - form_for [(@event || @location), Feedback.new] do |f|
+    %h3 &bull; Add new feedback
+    .field
+      = f.text_area :content
+      %br
+      %small
+        Feel free to use
+        = link_to "Markdown"
+        to format your feedback, and please respect each others. Think before you post!
+    .spaceh5
+    .floatright
+      = f.submit "Add", :class => "add-button"
+    
+.clear
+.hr.end

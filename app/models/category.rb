@@ -1,17 +1,3 @@
-# == Schema Information
-# Schema version: 20090325065024
-#
-# Table name: categories
-#
-#  id            :integer(4)      not null, primary key
-#  parent_id     :integer(4)
-#  title         :string(255)
-#  description   :text
-#  navigation    :string(255)
-#  photo         :string(255)
-#  category_type :string(255)
-#
-
 class Category < ActiveRecord::Base
   has_many :category_fields
   belongs_to :parent, :class_name => "Category"

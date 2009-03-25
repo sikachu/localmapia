@@ -1,0 +1,7 @@
+- object = @event || @location
+.center.rating{:rel => @event ? event_votes_path(@event, :format => :js) : location_votes_path(@location, :format => :js)}
+  .floatleft Rating: 
+  .stars{:class => "stars-#{object.stars} #{"not_voted" unless object.already_voted?(@user)}"}
+  .clear
+  .spaceh5
+  %small.rating_text= object.votes.empty? ? "(Nobody has rated this #{@event ? "event" : "location"} yet)" : "(Rated by #{pluralize object.votes.count, "person"})"

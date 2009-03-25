@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
   has_many :locations
   has_many :photos
   has_and_belongs_to_many :friends, :class_name => "User", :association_foreign_key => :friend
+  has_and_belongs_to_many :watched_events, :class_name => "Event"
   
   attr_encrypted :password, :key => :salt, :encode => true
   attr_accessor :password_confirmation

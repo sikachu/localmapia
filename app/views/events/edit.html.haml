@@ -1,26 +1,25 @@
 - content_for :headline do
-  %h2 Edit location's description
-  .tagline Give more detail about this location
+  %h2 Edit event's description
+  .tagline Give more detail about this event
   
 - two_columns do
   = content_block :current_description, :border => true do
     %div{ :style => "font-size: 14px" }
       .markdown
         :markdown
-          #{@location.description}
+          #{@event.description}
       .spaceh10
       %small Note: This will be overwritten by your version.
       .spaceh5
     
   = content_block :new_description, :border => true do
-    - form_for @location do |f|
+    - form_for @event do |f|
       .field
         = f.text_area :description, :style => "margin: 0"
       .clear
       .spaceh5
       .floatright
         = f.submit "Save", :class => "save-button"
-        = button_to_function "Cancel", "window.location='#{location_permalink(@location)}'", :class => "cancel-button"
+        = button_to_function "Cancel", "window.location='#{event_permalink(@event)}'", :class => "cancel-button"
       .clear
       .spaceh5
-  

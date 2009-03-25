@@ -1,20 +1,25 @@
 class FeedbacksController < ApplicationController
-  before_filter :find_location
+  before_filter :load_commentable
 
   def create
     unless logged_in?
       flash[:error] = "You need to be logged in first before you can post a feedback."
     else
-      @feedback = @location.feedbacks.build(params[:feedback].merge({:user_id => @user.id}))
+      @feedback = @commentable.feedbacks.build(params[:feedback].merge({:user_id => @user.id}))
       if @feedback.save
         flash[:notice] = "Your feedback has been added"
       end
     end
-    redirect_to location_permalink(@location)
+    redirect_to params[:event_id] ? event_permalink(@commentable) : location_permalink(@commentable)
   end
 
   private
-  def find_location
-    @location = Location.find(params[:location_id])
+  
+  def load_commentable
+    @commentable = if params[:event_id]
+        Event.find(params[:event_id])
+      else
+        Location.find(params[:location_id])
+      end
   end
 end

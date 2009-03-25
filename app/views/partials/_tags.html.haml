@@ -1,0 +1,19 @@
+= content_block :tags, :button => button_to_function("Add","$('#new_tag>.displaynone').slideToggle();", :class => "small-add-button") + " " +  button_to_function("Remove","", :class => "small-edit-button") do
+  - if tags.empty?
+    %div
+      No tag has been added to this
+      = @event ? "event" : "location"
+  - else
+    .taglist= tags.collect{ |tag| link_to(tag.name,"") }.join(", ")
+  - form_for [(@event || @location), Tag.new] do |f|
+    .displaynone{:style => "height: 55px"}
+      .spaceh10
+      .floatright= f.submit "Add", :class => "add-button"
+      .field
+        New tags:
+        = f.text_field :name
+      .spaceh5
+      %small{:style => "padding-left: 72px"} Separate each tag with comma
+      .clear
+.clear
+.hr.end

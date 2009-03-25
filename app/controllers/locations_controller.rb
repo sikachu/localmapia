@@ -29,6 +29,7 @@ class LocationsController < ApplicationController
       if session[:location].save
         redirect_to location_permalink(session[:location])
       else
+        flash[:error] = "There's something wrong with the data you entered. Please fix them and submit it again."
         redirect_to :action => "step2"
       end
     end
@@ -42,7 +43,7 @@ class LocationsController < ApplicationController
 
   def update
     if @location.update_attributes(params[:location])
-      flash[:notice] = "Location's has been updated successfully."
+      flash[:notice] = "Location has been updated successfully."
       redirect_to location_permalink(session[:location])
     else
       render :edit

@@ -17,8 +17,16 @@ class ApplicationController < ActionController::Base
   
   protected
   
-  helper_method :location_permalink
+  helper_method :location_permalink, :event_permalink, :category_permalink
   def location_permalink(location)
     "/locations/#{location.permalink}"
+  end
+  
+  def event_permalink(event)
+    "/events/#{event.permalink}"
+  end
+  
+  def category_permalink(category)
+    "/#{category.category_type}s/in/#{category.parent.title.downcase.gsub(/ /, '-')+"/" if category.parent}#{category.title.downcase.gsub(/ /, '-')}"
   end
 end

@@ -29,6 +29,9 @@ h1, h2, h3 {
 .displaynone {
   display: none; }
 
+.gray {
+  color: #888; }
+
 .leftcontent, .rightcontent {
   width: 370px;
   float: left;
@@ -259,8 +262,7 @@ a {
       color: #666; }
   .block .content h3 {
     font-size: 15px;
-    color: #174095;
-    margin-bottom: 5px; }
+    color: #174095; }
   .block .new_feedback textarea {
     width: 355px;
     height: 150px; }
@@ -334,35 +336,35 @@ form.formatted {
   width: 730px;
   height: 500px; }
 
-form.new_location .field, form.edit_location .field {
+form.new_location .field, form.edit_location .field, form.new_event .field {
   font-size: 16px;
   margin: 10px 0; }
-  form.new_location .field input,   form.edit_location .field input {
+  form.new_location .field input,   form.edit_location .field input,   form.new_event .field input {
     font-size: 14px;
     width: 350px;
     margin-top: 5px; }
-  form.new_location .field #category_selection,   form.edit_location .field #category_selection {
+  form.new_location .field #category_selection,   form.edit_location .field #category_selection,   form.new_event .field #category_selection {
     margin-top: 5px;
     font-size: 14px; }
-  form.new_location .field textarea,   form.edit_location .field textarea {
+  form.new_location .field textarea,   form.edit_location .field textarea,   form.new_event .field textarea {
     font-size: 14px;
     margin-top: 5px;
     width: 350px;
     height: 200px; }
-  form.new_location .field label,   form.edit_location .field label {
+  form.new_location .field label,   form.edit_location .field label,   form.new_event .field label {
     font-size: 16px; }
-form.new_location .floatright, form.edit_location .floatright {
+form.new_location .floatright, form.edit_location .floatright, form.new_event .floatright {
   margin: 0 5px; }
-form.new_location .fieldWithErrors, form.edit_location .fieldWithErrors {
+form.new_location .fieldWithErrors, form.edit_location .fieldWithErrors, form.new_event .fieldWithErrors {
   display: inline; }
-form.new_location .error, form.edit_location .error {
+form.new_location .error, form.edit_location .error, form.new_event .error {
   color: #f00;
   margin-top: 3px; }
-form.new_location .notice, form.edit_location .notice {
+form.new_location .notice, form.edit_location .notice, form.new_event .notice {
   color: #999;
   margin-top: 3px;
   font-size: 11px; }
-  form.new_location .notice p,   form.edit_location .notice p {
+  form.new_location .notice p,   form.edit_location .notice p,   form.new_event .notice p {
     margin: 0 0 5px 0; }
 
 .rating {
@@ -401,7 +403,13 @@ form.new_location .notice, form.edit_location .notice {
     .rating .stars.stars-45 {
       background-position: -514px -255px; }
 
-#send-to-friend, .small-add-button, .small-remove-button, .small-edit-button, .back-button, .next-button, .save-button, .cancel-button, .add-button, .remove-button, .submit-button {
+.edit_event textarea, .edit_location textarea {
+  font-size: 14px;
+  margin-top: 5px;
+  width: 355px;
+  height: 200px; }
+
+#send-to-friend, .small-add-button, .small-remove-button, .small-edit-button, .small-revert-button, .back-button, .next-button, .save-button, .cancel-button, .add-button, .remove-button, .submit-button {
   background: url('/images/localmapia.png') no-repeat;
   border: 0;
   text-indent: -1000em;
@@ -413,7 +421,7 @@ form.new_location .notice, form.edit_location .notice {
   height: 31px;
   background-position: -570px -50px; }
 
-.small-add-button, .small-remove-button, .small-edit-button {
+.small-add-button, .small-remove-button, .small-edit-button, .small-revert-button {
   width: 83px;
   height: 20px;
   background-position: -485px -188px; }
@@ -423,6 +431,9 @@ form.new_location .notice, form.edit_location .notice {
 
 .small-edit-button {
   background-position: -655px -188px; }
+
+.small-revert-button {
+  background-position: -485px -210px; }
 
 .back-button, .next-button {
   width: 65px;
@@ -449,10 +460,13 @@ form.new_location .notice, form.edit_location .notice {
 .submit-button {
   background-position: -655px -155px; }
 
-#description_block .content {
+.block .markdown {
   font-size: 14px; }
-  #description_block .content h1, #description_block .content h2, #description_block .content h3, #description_block .content h4 {
+  .block .markdown h1, .block .markdown h2, .block .markdown h3, .block .markdown h4 {
     font-size: 14px; }
+  .block .markdown li {
+    color: #000;
+    font-size: 100%; }
 
 form#new_tag .field {
   padding-top: 5px;
@@ -460,3 +474,55 @@ form#new_tag .field {
   form#new_tag .field #tag_name {
     width: 180px;
     font-size: 13px; }
+
+.big-button {
+  background: url('/images/localmapia.png') -724px 0px no-repeat;
+  width: 181px;
+  height: 60px;
+  margin-left: 5px;
+  cursor: hand;
+  cursor: pointer; }
+  .big-button.second {
+    margin-left: 3px; }
+  .big-button.active {
+    background-position: -724px -60px; }
+  .big-button .left {
+    width: 70px;
+    float: left;
+    text-align: center; }
+  .big-button .right {
+    margin: 10px 5px;
+    float: left;
+    width: 100px;
+    text-align: left; }
+  .big-button .number {
+    font-size: 32px;
+    line-height: 100%;
+    margin-top: 8px; }
+  .big-button .under {
+    font-size: 10px; }
+  .big-button .tiny {
+    font-size: 12px; }
+  .big-button .small {
+    font-size: 14px;
+    margin-left: 15px; }
+  .big-button .large {
+    font-size: 18px;
+    margin-left: 15px; }
+  .big-button .huge {
+    font-size: 19px; }
+
+.event_badge, .location_badge {
+  width: 37px;
+  height: 92px;
+  background: url('/images/localmapia.png') -490px -50px no-repeat; }
+  .event_badge .top, .event_badge .bottom,   .location_badge .top, .location_badge .bottom {
+    font-size: 16px;
+    text-align: center; }
+  .event_badge .top,   .location_badge .top {
+    margin: 23px 2px 0 0; }
+  .event_badge .bottom,   .location_badge .bottom {
+    margin: 4px 2px 0 0; }
+
+.event_badge {
+  background-position: -531px -50px; }

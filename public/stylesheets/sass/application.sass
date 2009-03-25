@@ -26,6 +26,8 @@ h1,h2,h3
   :text-align center
 .displaynone
   :display none
+.gray
+  :color #888
 
 .leftcontent, .rightcontent
   :width 370px
@@ -264,7 +266,7 @@ a
   .content h3
     :font-size 15px
     :color #174095
-    :margin-bottom 5px
+    //:margin-bottom 5px
   .new_feedback textarea
     :width 355px
     :height 150px
@@ -362,7 +364,7 @@ form.formatted
   :width 730px
   :height 500px
   
-form.new_location, form.edit_location
+form.new_location, form.edit_location, form.new_event
   .field
     :font-size 16px
     :margin 10px 0
@@ -433,7 +435,13 @@ form.new_location, form.edit_location
     &.stars-45
       :background-position -514px -255px
 
-#send-to-friend, .small-add-button, .small-remove-button, .small-edit-button, .back-button, .next-button, .save-button, .cancel-button, .add-button, .remove-button, .submit-button
+.edit_event textarea, .edit_location textarea
+  :font-size 14px
+  :margin-top 5px
+  :width 355px
+  :height 200px
+
+#send-to-friend, .small-add-button, .small-remove-button, .small-edit-button, .small-revert-button, .back-button, .next-button, .save-button, .cancel-button, .add-button, .remove-button, .submit-button
   :background url('/images/localmapia.png') no-repeat
   :border 0
   :text-indent -1000em
@@ -445,7 +453,7 @@ form.new_location, form.edit_location
   :height 31px
   :background-position -570px -50px
   
-.small-add-button, .small-remove-button, .small-edit-button
+.small-add-button, .small-remove-button, .small-edit-button, .small-revert-button
   :width 83px
   :height 20px
   :background-position -485px -188px
@@ -453,6 +461,8 @@ form.new_location, form.edit_location
   :background-position -570px -188px
 .small-edit-button
   :background-position -655px -188px
+.small-revert-button
+  :background-position -485px -210px
   
 .back-button, .next-button
   :width 65px
@@ -474,11 +484,15 @@ form.new_location, form.edit_location
 .submit-button
   :background-position -655px -155px
 
-#description_block .content
+.block .markdown
   :font-size 14px
   // Avoid the header tags in the content block
   h1, h2, h3, h4
     :font-size 14px
+  li
+    :color #000
+    :font-size 100%
+
 
 form#new_tag
   .field
@@ -487,3 +501,54 @@ form#new_tag
     #tag_name
       :width 180px
       :font-size 13px
+      
+.big-button
+  :background url('/images/localmapia.png') -724px 0px no-repeat
+  :width 181px
+  :height 60px
+  :margin-left 5px
+  :cursor hand
+  :cursor pointer
+  &.second
+    :margin-left 3px
+  &.active
+    :background-position -724px -60px
+  .left
+    :width 70px
+    :float left
+    :text-align center
+  .right
+    :margin 10px 5px
+    :float left
+    :width 100px
+    :text-align left
+  .number
+    :font-size 32px
+    :line-height 100%
+    :margin-top 8px
+  .under
+    :font-size 10px
+  .tiny
+    :font-size 12px
+  .small
+    :font-size 14px
+    :margin-left 15px
+  .large
+    :font-size 18px
+    :margin-left 15px
+  .huge
+    :font-size 19px
+
+.event_badge, .location_badge
+  :width 37px
+  :height 92px
+  :background url('/images/localmapia.png') -490px -50px no-repeat
+  .top, .bottom
+    :font-size 16px
+    :text-align center
+  .top
+    :margin 23px 2px 0 0
+  .bottom
+    :margin 4px 2px 0 0
+.event_badge
+  :background-position -531px -50px

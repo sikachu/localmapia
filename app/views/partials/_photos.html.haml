@@ -1,0 +1,7 @@
+= content_block :photos, :button => button_to_function("Add","", :class => "small-add-button") do
+  - if photos.empty?
+    There's no photo related to this place yet. Help us add some photo from photo sharing site, such as Flickr, Hi5, Facebook, or Picasa Web Album
+  - else
+    User's photos that related to this place:
+.clear
+.hr.end

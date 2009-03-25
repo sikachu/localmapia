@@ -153,7 +153,7 @@ class Location < ActiveRecord::Base
   end
   
   def set_permalink
-    self.permalink = "#{self.id}-#{self.title.gsub(/ /, "-")}"
+    self.permalink = "#{self.id}-#{self.title.downcase.gsub(/ /, "-")}"
     self.save
   end
 end

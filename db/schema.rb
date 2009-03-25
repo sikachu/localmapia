@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090325121250) do
+ActiveRecord::Schema.define(:version => 20090325163658) do
 
   create_table "categories", :force => true do |t|
     t.integer "parent_id"
@@ -46,7 +46,9 @@ ActiveRecord::Schema.define(:version => 20090325121250) do
     t.datetime "updated_at"
   end
 
-  create_table "events", :force => true do |t|
+  create_table "event_versions", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "version"
     t.integer  "location_id"
     t.string   "name"
     t.text     "description"
@@ -61,6 +63,24 @@ ActiveRecord::Schema.define(:version => 20090325121250) do
     t.string   "permalink"
   end
 
+  add_index "event_versions", ["event_id"], :name => "index_event_versions_on_event_id"
+
+  create_table "events", :force => true do |t|
+    t.integer  "location_id"
+    t.string   "name"
+    t.text     "description"
+    t.string   "url"
+    t.date     "date_start"
+    t.date     "date_end"
+    t.time     "time_start"
+    t.time     "time_end"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "permalink"
+    t.integer  "version"
+  end
+
   create_table "events_categories", :id => false, :force => true do |t|
     t.integer "event_id"
     t.integer "category_id"
@@ -69,6 +89,11 @@ ActiveRecord::Schema.define(:version => 20090325121250) do
   create_table "events_tags", :id => false, :force => true do |t|
     t.integer "event_id"
     t.integer "tag_id"
+  end
+
+  create_table "events_users", :id => false, :force => true do |t|
+    t.integer "event_id"
+    t.integer "user_id"
   end
 
   create_table "feedbacks", :force => true do |t|

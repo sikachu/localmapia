@@ -42,4 +42,9 @@ $(document).ready(function(){
     $('.center.rating').hide().after('<div class="center" id="loader"><img src="/images/loader-blue.gif" width="54" height="55" /></div>');
     $.post($('.center.rating').attr('rel'), {authenticity_token: _token, score: score}, null, "script");
   });
+  
+  $('#participate, #watch').click(function(){
+    $(".number", this).html('<img src="/images/loader.gif" style="margin: 9px 0 7px 0;" />');
+    $.post($(this).attr('rel'), {authenticity_token: _token}, null, "script");
+  });
 })

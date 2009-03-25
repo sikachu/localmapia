@@ -1,15 +1,3 @@
-# == Schema Information
-# Schema version: 20090325065024
-#
-# Table name: category_fields
-#
-#  id          :integer(4)      not null, primary key
-#  category_id :integer(4)
-#  name        :string(255)
-#  field_type  :string(255)
-#  collection  :text
-#
-
 class CategoryField < ActiveRecord::Base
   belongs_to :category
   

@@ -1,0 +1,80 @@
+- content_for :headline do
+  %h2 Add new event
+  .tagline 
+    New event that's going to take place in
+    = link_to @location.title, location_permalink(@location)
+
+- unless @event.errors.empty?
+  #error We're unable to record your data because of following errors
+- two_columns do
+  - form_for [@location, @event] do |f|
+    .leftcontent
+      = content_block :information_of_the_event do
+        .field
+          .label= f.label :name, "Event's name"
+          .input
+            = f.text_field :name
+          - if @event.errors.on(:name)
+            .error= "Event's name #{@event.errors.on(:name)}" if @event.errors.on(:name)
+          - else
+            .notice English or Thai, try to use formal name if possible.
+        .field
+          .label= f.label :url, "Event's Homepage / URL"
+          .input
+            = f.text_field :url
+          - if @event.errors.on(:url)
+            .error= "URL #{@event.errors.on(:url)}" if @event.errors.on(:url)
+          - else
+            .notice If there's an URL for this event, please put it here.
+        .field
+          = f.label :category
+          #category_selection
+            = f.collection_select :category_id, @categories, :id, :title
+            .spaceh5
+          .notice If you think we should add another category, please contact us.
+        .field
+          .label= f.label :description
+          .input= f.text_area :description
+          .error= "Description #{@event.errors.on(:description)}" if @event.errors.on(:description)
+          .notice
+            %p Some information about this event, such as the organizers, what will it be about, how frequent was the event, how much for the admission ticket (if any), and where does the event going to be held (which floor, which building, or which area.) Try to give as much information as possible.
+            %p
+              Remember, you can use
+              = link_to "Markdown", "http://en.wikipedia.org/wiki/Markdown", :popup => true
+              for styling the text.
+      .clear
+      .hr.end
+      
+    .rightcontent
+      = content_block :duration do
+        .field.oneline
+          = f.label :date_start, "From:"
+          = f.date_select :date_start, :order => [:day, :month, :year]
+        .field.oneline
+          = f.label :date_end, "To:"
+          = f.date_select :date_end, :order => [:day, :month, :year]
+        .error= "End date #{@event.errors.on(:date_end)}" if @event.errors.on(:date_end)
+        .field.oneline
+          = f.label :time_start, "Between"
+          = f.time_select :time_start, :minute_step => 15
+          = f.label :time_end, "and"
+          = f.time_select :time_end, :minute_step => 15
+        .error= "End time #{@event.errors.on(:time_end)}" if @event.errors.on(:time_end)
+      .clear
+      .hr.end
+      
+      = content_block :tags do
+        .field
+          .label
+            = f.label :tag_list
+            %small (separated by a comma)
+          .input
+            = f.text_field :tag_list
+            .notice Help us categorize this event by include some appropriate tag for it. (No spamming, please!)
+      .clear
+      .hr.end
+      
+      .spaceh10
+      .right
+        = f.submit "Add", :class => "add-button"
+        

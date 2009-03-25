@@ -1,9 +1,9 @@
 class VotesController < ApplicationController
-  before_filter :find_location
+  before_filter :load_votable
 
   def create
     if logged_in?
-      @location.votes.create(:user_id => @user.id, :score => params[:score].to_f / 10)
+      @votable.votes.create(:user_id => @user.id, :score => params[:score].to_f / 10)
       respond_to do |wants|
         wants.js
       end
@@ -13,7 +13,12 @@ class VotesController < ApplicationController
   end
 
   private
-  def find_location
-    @location = Location.find(params[:location_id])
+  
+  def load_votable
+    @votable = if params[:event_id]
+        Event.find(params[:event_id])
+      else
+        Location.find(params[:location_id])
+      end
   end
 end

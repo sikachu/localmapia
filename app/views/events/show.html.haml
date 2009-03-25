@@ -1,0 +1,42 @@
+- content_for :javascript do
+  :javascript
+    var _token = '#{form_authenticity_token}';
+    
+- content_for :headline do
+  .floatright
+    = button_to_function "Send this to friend", "", :id => "send-to-friend"
+  .spaceh5
+  .tagline.gray{:style => "margin: 0;"}== Event in #{link_to @location.title, location_permalink(@location)}
+  %h2= @event.name
+  .tagline.gray
+    = @event.duration
+    == (in #{link_to @event.category.title, category_permalink(@event.category)})
+
+= render "layouts/notice"
+.spaceh5
+- two_columns do
+  .leftcontent
+    #participate.big-button.floatleft{:class => "#{"active" if @event.participations.exists?(:user_id => @user.id)}", :rel => event_participations_path(@event)}
+      .left
+        .number= @event.participants.count
+        .under participants
+      .right
+        .tiny I'll be
+        .huge Participate!
+        
+    #watch.second.big-button.floatleft{:class => "#{"active" if @event.watcher_ids.include? @user.id}", :rel => event_watchers_path(@event)}
+      .left
+        .number= @event.watchers.count
+        .under watchers
+      .right
+        .large Watch
+        .small this event
+    .clear
+    
+    = render "partials/description", :object => @event.description
+    = render "partials/tags", :object => @event.tags
+    = render "partials/feedbacks", :object => @event.feedbacks
+    
+  .rightcontent
+    = render "partials/rating"
+    = render "partials/photos", :object => @event.photos

@@ -9,88 +9,39 @@
   .tagline
     in
     - if @location.category.parent
-      = link_to @location.category.parent.title
-      \>
-    = link_to @location.category.title
+      = link_to @location.category.parent.title, category_permalink(@location.category.parent)
+      &gt;
+    = link_to @location.category.title, category_permalink(@location.category)
 
 = render "layouts/notice"
 - two_columns do
   .leftcontent
-    = content_block :description, :button => button_to_function("Edit", "window.location.href='#{edit_location_path(@location)}'", :class => "small-edit-button") do
-      :markdown
-        #{@location.description}
-    .clear
-    .hr.end
-    
-    = content_block :tags, :button => button_to_function("Add","$('#new_tag>.displaynone').slideToggle();", :class => "small-add-button") + " " +  button_to_function("Remove","", :class => "small-remove-button") do
-      - if !@location.tags.empty?
-        %div No tag has been added to this location
-      - else
-        .taglist= @location.tags.collect{ |tag| link_to(tag.name,"") }.join(", ")
-      - form_for [@location, Tag.new] do |f|
-        .displaynone{:style => "height: 55px"}
-          .spaceh10
-          .floatright= f.submit "Add", :class => "add-button"
-          .field
-            New tags:
-            = f.text_field :name
-          .spaceh5
-          %small{:style => "padding-left: 72px"} Separate each tag with comma
-          .clear
-    .clear
-    .hr.end
-    
-    = content_block :feedback do
-      - if @location.feedbacks.empty?
-        Nobody has given this location a feedback yet.
-        .hr
-      - else
-        - @location.feedbacks.each do |feedback|
-          .item
-            %small
-              Posted by
-              = link_to feedback.user.displayname
-              on
-              = feedback.created_at.strftime("%B %d, %Y")
-            .spaceh10
-            .content
-              = feedback.content
-            .spaceh5
-            .hr
-      - form_for [@location, Feedback.new] do |f|
-        %h3 &bull; Add new feedback
-        .field
-          = f.text_area :content
-          %br
-          %small
-            Feel free to use
-            = link_to "Markdown"
-            to format your feedback, and please respect each others. Think before you post!
-        .spaceh5
-        .floatright
-          = f.submit "Add", :class => "add-button"
-        
-    .clear
-    .hr.end
-    
-    = content_block :photos, :button => button_to_function("Add","", :class => "small-add-button") do
-      - if @location.photos.empty?
-        There's no photo related to this location yet. Help us add some photo from photo sharing site, such as Flickr, Hi5, Facebook, or Picasa Web Album
-      - else
-        User's photos that related to this location:
-    .clear
-    .hr.end
+    = render "partials/description", :object => @location.description
+    = render "partials/tags", :object => @location.tags
+    = render "partials/feedbacks", :object => @location.feedbacks
+    = render "partials/photos", :object => @location.photos
   
   .rightcontent
-    .center.rating{:rel => location_votes_path(@location, :format => :js)}
-      .floatleft Rating: 
-      .stars{:class => "stars-#{@location.stars} #{"not_voted" unless @location.already_voted?(@user)}"}
-      .clear
-      .spaceh5
-      %small.rating_text= @location.votes.empty? ? "(Nobody has rated this location yet)" : "(Rated by #{pluralize @location.votes.count, "person"})"
-      
-    = content_block :events, :button => button_to_function("Add","", :class => "small-add-button") do
-      Events boobooo
+    = render "partials/rating"
+    = content_block :events, :button => button_to_function("Add","window.location='#{new_location_event_path(@location)}'", :class => "small-add-button") do
+      - if @location.events.empty?
+        No information about the event has been added yet. If you know one, help us by add it to our database.
+      - else
+        - @location.events.active.each do |event|
+          .item
+            .floatright.event_badge
+              .top{:title => "Number of participants"}= event.participations.count
+              .bottom{:title => "Number of watchers"}= event.watchers.count
+            %h3= link_to event.name, event_permalink(event)
+            %small= event.duration
+            .spaceh10
+            .content
+              .markdown
+                :markdown
+                  #{event.description}
+            .spaceh5
+            .clear
+            .hr
     .clear
     .hr.end
   
