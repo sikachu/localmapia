@@ -1,5 +1,6 @@
 class LocationsController < ApplicationController
-  before_filter :load_location, :only => [:step1, :step2]
+  before_filter :check_for_login, :only => [:step1, :step2]
+  before_filter :load_location, :only => [:show, :edit, :update, :destroy]
   
   def index
   end
@@ -21,11 +22,13 @@ class LocationsController < ApplicationController
 
   def create
     if params[:location][:latlng].present? # From step 1
-      session[:location] = Location.new(params[:location])
+      session[:location] = Location.new(params[:location].merge(:user_id => @user.id))
       redirect_to :action => "step2"
     else
       session[:location].attributes = params[:location]
-      unless session[:location].save
+      if session[:location].save
+        redirect_to location_permalink(session[:location])
+      else
         redirect_to :action => "step2"
       end
     end
@@ -38,18 +41,41 @@ class LocationsController < ApplicationController
   end
 
   def update
+    if @location.update_attributes(params[:location])
+      flash[:notice] = "Location's has been updated successfully."
+      redirect_to location_permalink(session[:location])
+    else
+      render :edit
+    end
   end
 
   def destroy
   end
   
+  def categories
+    @categories = if params[:parent_id].blank?
+        Category.for_location.first_level
+      else
+        Category.for_location.second_level(params[:parent_id])
+      end
+    render :layout => false
+  end
+  
   private
   
-  def load_location
+  def check_for_login
     unless logged_in?
       flash[:notice] = "You're just one step away from adding new location. Please login or register below:"
       redirect_to login_path
     end
+  end
+  
+  def load_location
+    @location = if params[:id][/[0-9]+/]
+        Location.find(params[:id])
+      else
+        Location.find_by_permalink!(params[:id])
+      end
   end
 
 end

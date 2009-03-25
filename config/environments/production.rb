@@ -22,3 +22,6 @@ config.action_controller.perform_caching             = true
 
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
+
+# Define Google Maps API KEY
+GOOGLE_API_KEY = "ABQIAAAA5RYDLPaKhW2QNe3PCbkgeRQjzcZF9Kky9HSyNvh_bDrFKFpjWBQEnjmBUO8X6n13_xXkbfpaxhGzMQ"

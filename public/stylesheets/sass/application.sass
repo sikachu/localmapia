@@ -22,6 +22,15 @@ h1,h2,h3
   :clear both
 .right
   :text-align right
+.center
+  :text-align center
+
+.leftcontent, .rightcontent
+  :width 370px
+  :float left
+  :margin-right 5px
+  .block
+    :margin-bottom 0px
   
 h1
   :font-size 35px
@@ -35,6 +44,8 @@ h3
   :height 1px
   :background #C5E885
   :margin 5px 0
+  &.end
+    :margin-left 5px
   
 .tip
   :width 250px
@@ -191,14 +202,20 @@ a
     :width 365px
   &.column_3
     :width 240px
+  &.border_bottom
+    :border-bottom 1px solid #C5E885
     
   h2.title
     :color #174095
     :font-size 18px
     :font-weight normal
     :margin 5px 2px
+  .button
+    :margin 6px 3px 0 0
   &>.content
     :padding 0 3px
+    p
+      :margin 0 0 5px 0
   a
     :color #666
     :text-decoration underline
@@ -334,13 +351,13 @@ form.formatted
   :width 730px
   :height 500px
   
-#new_location_2
+form.new_location, form.edit_location
   .field
     :font-size 16px
     :margin 10px 0
     input
       :font-size 14px
-      :width 300px
+      :width 350px
       :margin-top 5px
     #category_selection
       :margin-top 5px
@@ -348,10 +365,103 @@ form.formatted
     textarea
       :font-size 14px
       :margin-top 5px
-      :width 300px
+      :width 350px
       :height 200px
     label
       :font-size 16px
   .floatright
     :margin 0 5px
-    
+  .fieldWithErrors
+    :display inline
+  .error
+    :color #f00
+    :margin-top 3px
+  .notice
+    :color #999
+    :margin-top 3px
+    :font-size 11px
+    p
+      :margin 0 0 5px 0
+      
+//
+// Show location
+//
+.rating
+  :margin 0 auto
+  :width 200px
+  .floatleft
+    :font-size 14px
+    :padding-top 5px
+  .stars
+    :width 125px
+    :height 25px
+    :float left
+    :margin-left 5px
+    :background url('/images/localmapia.png') -614px -230px no-repeat
+    &.stars-10
+      :background-position -589px -230px
+    &.stars-20
+      :background-position -564px -230px
+    &.stars-30
+      :background-position -539px -230px
+    &.stars-40
+      :background-position -514px -230px
+    &.stars-50
+      :background-position -489px -230px
+    &.stars-5
+      :background-position -614px -255px
+    &.stars-15
+      :background-position -589px -255px
+    &.stars-25
+      :background-position -564px -255px
+    &.stars-35
+      :background-position -539px -255px
+    &.stars-45
+      :background-position -514px -255px
+
+#send-to-friend, .small-add-button, .small-remove-button, .small-edit-button, .back-button, .next-button, .save-button, .cancel-button, .add-button, .remove-button, .submit-button
+  :background url('/images/localmapia.png') no-repeat
+  :border 0
+  :text-indent -1000em
+  :cursor pointer
+  :cursor hand
+
+#send-to-friend
+  :width 139px
+  :height 31px
+  :background-position -570px -50px
+  
+.small-add-button, .small-remove-button, .small-edit-button
+  :width 83px
+  :height 20px
+  :background-position -485px -188px
+.small-remove-button
+  :background-position -570px -188px
+.small-edit-button
+  :background-position -655px -188px
+  
+.back-button, .next-button
+  :width 65px
+  :height 31px
+  :background-position -570px -85px
+.next-button
+  :background-position -640px -85px
+  
+.save-button, .cancel-button, .add-button, .remove-button, .submit-button
+  :width 83px
+  :height 31px
+  :background-position -570px -120px
+.cancel-button
+  :background-position -655px -120px
+.add-button
+  :background-position -485px -155px
+.remove-button
+  :background-position -570px -155px
+.submit-button
+  :background-position -655px -155px
+
+#description_block .content
+  :font-size 14px
+  // Avoid the header tags in the content block
+  h1, h2, h3, h4
+    :font-size 14px

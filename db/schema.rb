@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090318083659) do
+ActiveRecord::Schema.define(:version => 20090325065024) do
 
   create_table "categories", :force => true do |t|
     t.integer "parent_id"
@@ -90,6 +90,30 @@ ActiveRecord::Schema.define(:version => 20090318083659) do
     t.datetime "updated_at"
   end
 
+  create_table "location_versions", :force => true do |t|
+    t.integer  "location_id"
+    t.integer  "version"
+    t.integer  "user_id"
+    t.integer  "parent_id"
+    t.string   "title"
+    t.text     "description"
+    t.float    "lat"
+    t.float    "lng"
+    t.string   "city"
+    t.string   "province"
+    t.string   "country"
+    t.string   "status"
+    t.integer  "score"
+    t.integer  "vote_count"
+    t.text     "additional_info"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "permalink"
+    t.string   "address"
+  end
+
+  add_index "location_versions", ["location_id"], :name => "index_location_versions_on_location_id"
+
   create_table "locations", :force => true do |t|
     t.integer  "user_id"
     t.integer  "parent_id"
@@ -107,6 +131,8 @@ ActiveRecord::Schema.define(:version => 20090318083659) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "permalink"
+    t.string   "address"
+    t.integer  "version"
   end
 
   create_table "locations_categories", :id => false, :force => true do |t|
@@ -156,6 +182,16 @@ ActiveRecord::Schema.define(:version => 20090318083659) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "tags", :force => true do |t|
     t.string "name"

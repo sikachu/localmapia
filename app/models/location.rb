@@ -9,15 +9,18 @@ class Location < ActiveRecord::Base
   has_and_belongs_to_many :categories, :join_table => "locations_categories"
   has_and_belongs_to_many :tags
   accepts_nested_attributes_for :categories
+  acts_as_versioned :if_changed => :description
   
   STATUS = %w(hidden normal featured)
-  before_validation :set_default_country, :set_default_status
+  before_validation :set_default_status
+  before_validation_on_create :fetch_location_information
   before_save :set_default_score_and_vote_count
+  after_create :set_permalink
   
   validates_presence_of :user
   validates_presence_of :title
   validates_presence_of :description
-  validates_presence_of :lat, :lng, :city, :province, :country
+  validates_presence_of :lat, :lng, :country
   validates_inclusion_of :status, :in => STATUS
   
   def tag_list=(str)
@@ -54,10 +57,38 @@ class Location < ActiveRecord::Base
     @regions_for_google = self.regions.collect{ |r| "new GLatLng(#{r.lat}, #{r.lng})" }.join(",") + ",new GLatLng(#{self.regions.first.lat}, #{self.regions.first.lng})"
   end
   
+  # Temporary - We'll use a single category for a while
+  def category_id=(category_id)
+    return if self.category_ids.include? category_id
+    self.category_ids = [category_id]
+  end
+  
+  def category_id
+    self.category_ids.first
+  end
+  
+  def category
+    self.categories.first
+  end
+  
+  def thumbnail
+    @thumbnail ||= "http://maps.google.com/staticmap?center=#{lat},#{lng}&zoom=15&size=100x100&markers=#{lat},#{lng}&key=#{GOOGLE_API_KEY}&sensor=false"
+  end
+  
   private
   
-  def set_default_country
+  def fetch_location_information
+    logger.info "=> Request reverse geocoding data from Google ..."
+    response = `curl "http://maps.google.com/maps/geo?q=#{ self.lat },#{ self.lng }&output=csv&oe=utf8&sensor=false&key=#{GOOGLE_API_KEY}&hl=en"`
+    if response.present?
+      status, accuracy, address = response.split(/,/, 3)
+      if status == "200"
+        logger.info "** #{address}"
+        self.country, self.province, self.city = address[1..-2].split(/, /).reverse
+      end
+    end
     self.country ||= "Thailand"
+    self.province ||= "Bangkok"
   end
   
   def set_default_status
@@ -70,5 +101,10 @@ class Location < ActiveRecord::Base
   
   def validate
     errors.add(:category, "should not be blank") if self.categories.size.zero?
+  end
+  
+  def set_permalink
+    self.permalink = "#{self.id}-#{self.title.gsub(/ /, "-")}"
+    self.save
   end
 end

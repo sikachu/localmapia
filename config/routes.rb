@@ -12,7 +12,12 @@ ActionController::Routing::Routes.draw do |map|
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   map.resources :products
   map.resource :session, :only => [:new, :create, :destroy]
-  map.resources :locations, :new => [:step1, :step2]
+  map.resources :locations, :new => [:step1, :step2], :collection => { :categories => :get } do |location|
+    location.resources :events, :shallow => true
+    location.resources :feedback
+    location.resources :photos
+    location.resources :tags
+  end
   map.resource :account, :path_names => { :new => 'register' }, :member => { :status => :get }
   map.activate "account/activate/:id", :controller => "accounts", :action => "activate"
   

@@ -1,5 +1,5 @@
 - content_for :javascript do
-  \<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAA5RYDLPaKhW2QNe3PCbkgeRQjzcZF9Kky9HSyNvh_bDrFKFpjWBQEnjmBUO8X6n13_xXkbfpaxhGzMQ&hl=en" type="text/javascript"></script>
+  == <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=#{GOOGLE_API_KEY}&amp;hl=en" type="text/javascript"></script>
   = javascript_include_tag "map-show"
   :javascript
     $(document).ready(function(){
@@ -7,7 +7,7 @@
     });
 
 - content_for :headline do
-  %h2 Add new location
+  %h2 Add new location: Step 2 of 2
   .tagline Please give us more detail about this location
 
 - form_for @location, :html => { :id => "new_location_2"} do |f|
@@ -15,23 +15,37 @@
     = content_block :information_about_location do
       .field
         .label= f.label :title, "Location's name"
-        .input= f.text_field :title
-        .error= "Location's name #{@location.errors.on(:title)}" if @location.errors.on(:title)
+        .input
+          = f.text_field :title
+        - if @location.errors.on(:title)
+          .error= "Location's name #{@location.errors.on(:title)}" if @location.errors.on(:title)
+        - else
+          .notice English or Thai, try to use formal name if possible.
       .field
         = f.label :categories
-        #selected_categories
         #category_selection
-          = collection_select :category, :first_level, @first_level_categories, :id, :name
-          = collection_select :category, :second_level, @second_level_categories, :id, :name
-          = link_to_function "+", "add_category"
+          = collection_select :category, :first_level, @first_level_categories, :id, :title
+          .spaceh5
+          = f.collection_select :category_id, @second_level_categories, :id, :title
+          .spaceh5
+        .notice If you think we should add another category, please contact us.
       .field
         .label= f.label :description
         .input= f.text_area :description
         .error= "Description #{@location.errors.on(:description)}" if @location.errors.on(:description)
+        .notice
+          %p Some background information about this location. If that location has a URL, please also include it in the description. Also, If you know the bus route or MRT/BTS line, please also include the closest bus route, closest BTS/MRT station for reference.
+          %p
+            You can use
+            = link_to "Markdown", "http://en.wikipedia.org/wiki/Markdown", :popup => true
+            for styling the text.
       .field
-        .label= f.label :tags
-        .input= f.text_field :tags
-        .error= "Tags #{@location.errors.on(:tags)}" if @location.errors.on(:tags)
+        .label
+          = f.label :tag_list
+          %small (separated by a comma)
+        .input
+          = f.text_field :tag_list
+          .notice Help us categorize this location by include some appropriate tag for it. (No spamming, please!)
     
     = content_block :map do
       #map-display{:style => "width: 358px; height: 355px; border: 1px solid #999"}

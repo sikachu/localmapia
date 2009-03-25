@@ -1,5 +1,5 @@
 - content_for :javascript do
-  \<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAA5RYDLPaKhW2QNe3PCbkgeRQjzcZF9Kky9HSyNvh_bDrFKFpjWBQEnjmBUO8X6n13_xXkbfpaxhGzMQ&hl=en" type="text/javascript"></script>
+  == <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=#{GOOGLE_API_KEY}&amp;hl=en" type="text/javascript"></script>
   = javascript_include_tag "map-select"
   :javascript
     $(document).ready(function(){
@@ -9,7 +9,7 @@
     });
 
 - content_for :headline do
-  %h2 Add new location: Step 1 of 3
+  %h2 Add new location: Step 1 of 2
   .tagline
     Navigate to the location you want to add on the map, then click "Mark Region" to draw a region over it.
     %br

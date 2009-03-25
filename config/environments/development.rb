@@ -28,3 +28,6 @@ ActionMailer::Base.smtp_settings = {
   :user_name => 'nobody@sikachu.com',
   :password => '86E749'
 }
+
+# Define Google Maps API KEY
+GOOGLE_API_KEY = "ABQIAAAA5RYDLPaKhW2QNe3PCbkgeRQjzcZF9Kky9HSyNvh_bDrFKFpjWBQEnjmBUO8X6n13_xXkbfpaxhGzMQ"

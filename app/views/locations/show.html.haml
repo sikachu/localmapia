@@ -1,2 +1,55 @@
-<h1>Locations#show</h1>
-<p>Find me in app/views/locations/show.html.erb</p>
+- content_for :headline do
+  .floatright
+    = button_to_function "Send this to friend", "", :id => "send-to-friend"
+  %h2= @location.title
+  .tagline
+    in
+    - if @location.category.parent
+      = link_to @location.category.parent.title
+      \>
+    = link_to @location.category.title
+
+= render "layouts/notice"
+- two_columns do
+  .leftcontent
+    = content_block :description, :button => button_to_function("Edit", "window.location.href='#{edit_location_path(@location)}'", :class => "small-edit-button") do
+      :markdown
+        #{@location.description}
+    .clear
+    .hr.end
+    
+    = content_block :tags, :button => button_to_function("Add","", :class => "small-add-button") + " " +  button_to_function("Remove","", :class => "small-remove-button") do
+      .taglist= @location.tags.collect{ |tag| link_to(tag.name,"") }.join(", ")
+      - form_for [@location, Tag.new] do |f|
+        .floatright= f.submit "Add", :class => "add-button"
+        .field
+          New tags:
+          = f.text_field :name
+        .spaceh5
+        %small Separate each tag with comma
+    .clear
+    .hr.end
+    
+    = content_block :feedback do
+      xxx
+    .clear
+    .hr.end
+    
+    = content_block :photos, :button => button_to_function("Add","", :class => "small-add-button") do
+      User's photos that related to this location:
+    .clear
+    .hr.end
+  
+  .rightcontent
+    .center.rating
+      .floatleft Rating: 
+      .stars{:class => "stars-35"}
+      .clear
+      .spaceh5
+      %small (No rating yet)
+      
+    = content_block :events, :button => button_to_function("Add","", :class => "small-add-button") do
+      Events boobooo
+    .clear
+    .hr.end
+  
