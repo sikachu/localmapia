@@ -28,6 +28,7 @@ ActionController::Routing::Routes.draw do |map|
   end
   map.resource :account, :path_names => { :new => 'register' }, :member => { :status => :get }
   map.activate "account/activate/:id", :controller => "accounts", :action => "activate"
+  map.resources :searches
   
   map.login "login", :controller => "sessions", :action => "new"
   map.logout "logout", :controller => "sessions", :action => "destroy"

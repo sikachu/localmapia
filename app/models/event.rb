@@ -36,6 +36,11 @@ class Event < ActiveRecord::Base
     @tag_list ||= tags.collect{ |t| t.name }.join(", ")
   end
   
+  # monkeypatch - make it acts like a location
+  def title
+    name
+  end
+  
   def time_start
     self[:time_start] ||= Time.parse("9:00")
   end

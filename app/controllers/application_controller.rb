@@ -17,7 +17,11 @@ class ApplicationController < ActionController::Base
   
   protected
   
-  helper_method :location_permalink, :event_permalink, :category_permalink
+  helper_method :location_permalink, :event_permalink, :category_permalink, :object_permalink
+  def object_permalink(object)
+    object.class == Location ? location_permalink(object) : event_permalink(object)
+  end
+  
   def location_permalink(location)
     "/locations/#{location.permalink}"
   end

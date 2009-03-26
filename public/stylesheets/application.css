@@ -32,6 +32,9 @@ h1, h2, h3 {
 .gray {
   color: #888; }
 
+.black {
+  color: #000; }
+
 .leftcontent, .rightcontent {
   width: 370px;
   float: left;
@@ -532,9 +535,28 @@ form#new_tag .field {
     font-size: 16px;
     text-align: center; }
   .event_badge .top,   .location_badge .top {
-    margin: 23px 2px 0 0; }
+    padding: 23px 2px 0 0; }
   .event_badge .bottom,   .location_badge .bottom {
-    margin: 4px 2px 0 0; }
+    padding: 8px 2px 0 0; }
 
 .event_badge {
   background-position: -531px -50px; }
+
+.item.event .marker, .item.location .marker {
+  float: left;
+  width: 35px;
+  height: 50px;
+  background: url('/images/localmapia.png') -266px 0px no-repeat; }
+.item.event .event_badge, .item.event .location_badge, .item.location .event_badge, .item.location .location_badge {
+  float: left;
+  margin: 0 5px; }
+.item.event .info, .item.location .info {
+  float: left;
+  width: 535px;
+  margin: 0 5px; }
+.item.event .photo, .item.location .photo {
+  width: 100px;
+  height: 100px; }
+
+.item.event .marker {
+  background-position: -301px 0px; }

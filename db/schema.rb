@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090326041857) do
+ActiveRecord::Schema.define(:version => 20090326071601) do
 
   create_table "categories", :force => true do |t|
     t.integer "parent_id"
@@ -128,8 +128,6 @@ ActiveRecord::Schema.define(:version => 20090326041857) do
     t.string   "province"
     t.string   "country"
     t.string   "status"
-    t.integer  "score"
-    t.integer  "vote_count"
     t.text     "additional_info"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -202,6 +200,16 @@ ActiveRecord::Schema.define(:version => 20090326041857) do
     t.string   "object_type"
     t.integer  "object_id"
     t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "searches", :force => true do |t|
+    t.string   "keyword"
+    t.string   "permalink"
+    t.text     "sorted_by_relevance"
+    t.text     "sorted_by_added"
+    t.text     "sorted_by_updated"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

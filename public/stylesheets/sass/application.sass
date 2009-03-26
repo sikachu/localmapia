@@ -28,6 +28,8 @@ h1,h2,h3
   :display none
 .gray
   :color #888
+.black
+  :color #000
 
 .leftcontent, .rightcontent
   :width 370px
@@ -560,8 +562,28 @@ form#new_tag
     :font-size 16px
     :text-align center
   .top
-    :margin 23px 2px 0 0
+    :padding 23px 2px 0 0
   .bottom
-    :margin 4px 2px 0 0
+    :padding 8px 2px 0 0
 .event_badge
   :background-position -531px -50px
+  
+.item.event, .item.location
+  .marker
+    :float left
+    :width 35px
+    :height 50px
+    :background url('/images/localmapia.png') -266px 0px no-repeat
+  .event_badge, .location_badge
+    :float left
+    :margin 0 5px
+  .info
+    :float left
+    :width 535px
+    :margin 0 5px
+  .photo
+    :width 100px
+    :height 100px
+    
+.item.event .marker
+  :background-position -301px 0px
