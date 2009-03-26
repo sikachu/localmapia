@@ -23,14 +23,14 @@ class ApplicationController < ActionController::Base
   end
   
   def location_permalink(location)
-    "/locations/#{location.permalink}"
+    URI.escape "/locations/#{location.permalink}"
   end
   
   def event_permalink(event)
-    "/events/#{event.permalink}"
+    URI.escape "/events/#{event.permalink}"
   end
   
   def category_permalink(category)
-    "/#{category.category_type}s/in/#{category.parent.title.downcase.gsub(/ /, '-')+"/" if category.parent}#{category.title.downcase.gsub(/ /, '-')}"
+    URI.escape "/#{category.category_type}s/in/#{category.parent.title.downcase.gsub(/ /, '-')+"/" if category.parent}#{category.title.downcase.gsub(/ /, '-')}"
   end
 end
