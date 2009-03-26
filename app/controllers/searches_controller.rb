@@ -6,13 +6,10 @@ class SearchesController < ApplicationController
   end
   
   def create
+    @search = Search.new(:keyword => params[:search][:keyword])
     params[:search][:keyword].strip!
-    if params[:search][:keyword].empty? or params[:search][:keyword].size < 2
-      redirect_to searches_path
-    else
-      @search = Search.new(params[:search])
-      @search.process!
-      redirect_to search_path(@search.permalink)
+    if params[:search][:keyword].present? and params[:search][:keyword].chars().size >= 2
+      redirect_to search_path(@search.permalink) if @search.process!
     end
   end
   

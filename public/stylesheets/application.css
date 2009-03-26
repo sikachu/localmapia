@@ -535,9 +535,9 @@ form#new_tag .field {
     font-size: 16px;
     text-align: center; }
   .event_badge .top,   .location_badge .top {
-    padding: 23px 2px 0 0; }
+    padding: 23px 0px 0 0; }
   .event_badge .bottom,   .location_badge .bottom {
-    padding: 8px 2px 0 0; }
+    padding: 8px 0px 0 0; }
 
 .event_badge {
   background-position: -531px -50px; }

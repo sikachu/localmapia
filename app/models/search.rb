@@ -15,6 +15,9 @@ class Search < ActiveRecord::Base
       merge_result_data :event, tag.events
     end
     
+    # Do not save data if we can't find any record
+    return false if result_objects.empty?
+    
     # Sort the object ids based on criteria
     self.sorted_by_relevance = result_object_ids.sort do |y,x| # Max -> Min
       fetch_object(x).title.count(keyword) + fetch_object(x).description.count(keyword) <=> fetch_object(y).title.count(keyword) + fetch_object(y).description.count(keyword)

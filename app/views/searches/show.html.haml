@@ -21,6 +21,7 @@
   
 - one_column do
   = content_block do
+    .spaceh5
     - @search.send("sorted_by_#{params[:type]}")[@offset, 10].each do |id|
       - object = @search.fetch_object(id)
       .item[object]

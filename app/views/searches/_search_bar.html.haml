@@ -1,5 +1,5 @@
 - content_for :headline do
-  - form_for @search do |f|
+  - form_for Search.new(:keyword => @search.keyword) do |f|
     = f.label :keyword, "Search for"
     = f.text_field :keyword
     = f.submit "Search", :id => "search-button"
