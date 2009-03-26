@@ -25,10 +25,9 @@ class LocationsController < ApplicationController
       session[:location] = Location.new(params[:location].merge(:user_id => @user.id))
       redirect_to :action => "step2"
     else
-      @location = session[:location]
       session[:location].attributes = params[:location]
       if session[:location].save
-        @location = session
+        @location = session[:location]
         session[:location] = nil
         @user.event_logs.create(:action => "create_location", :content => @location.id)
         redirect_to location_permalink(@location)

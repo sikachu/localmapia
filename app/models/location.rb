@@ -124,7 +124,7 @@ class Location < ActiveRecord::Base
   end
   
   def set_default_status
-    self.status ||= "normal"
+    self.status = "normal"
   end
   
   def validate
