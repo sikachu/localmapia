@@ -10,8 +10,14 @@ class CategoriesController < ApplicationController
   def show
     prepare_offset_vars
     @category = Category.find_by_permalink!(params[:parent])
-    @category = @category.children.find_by_permalink!(params[:id], :include => :parent) if params[:id]
-    @collection = @category.send(params[:object_type]).all(:order => order, :offset => @offset, :limit => 10)
+    if params[:id].blank? and params[:object_type] == "locations"
+      @collection = @category.send("children_#{params[:object_type]}", {:order => order, :offset => @offset, :limit => 10})
+    elsif params[:id].blank?
+      @collection = @category.send("#{params[:object_type]}", {:order => order, :offset => @offset, :limit => 10})
+    else
+      @category = @category.children.find_by_permalink!(params[:id], :include => :parent)
+      @collection = @category.send(params[:object_type]).all(:order => order, :offset => @offset, :limit => 10)
+    end
   end
   
   protected

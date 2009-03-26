@@ -19,6 +19,10 @@ class Category < ActiveRecord::Base
   
   private
   
+  def children_locations(opts={})
+    Location.all({:select => "locations.*", :from => "locations_categories", :joins => "JOIN locations ON locations_categories.location_id = locations.id", :conditions => "locations_categories.category_id IN (SELECT id FROM categories WHERE parent_id = #{id})"}.merge(opts))
+  end
+  
   def validate
     if self.new_record? # Validate on create only
       self.errors.add(:title, "should be unique (#{{:title => self.title, :category_type => self.category_type, :parent_id => self.parent_id}.inspect})") if Category.count(:conditions => {:title => self.title, :category_type => self.category_type, :parent_id => self.parent_id}) > 0
