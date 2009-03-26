@@ -3,6 +3,7 @@ class LocationsController < ApplicationController
   before_filter :load_location, :only => [:show, :edit, :update, :destroy]
   
   def index
+    redirect_to browse_path
   end
   
   def new

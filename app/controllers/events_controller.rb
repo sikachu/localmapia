@@ -13,6 +13,7 @@ class EventsController < ApplicationController
       @user.event_logs.create(:action => "create_event", :content => @event.id, :user_agent => request.env["HTTP_USER_AGENT"], :ip_address => request.env["X-Real-IP"])
       redirect_to event_permalink(@event)
     else
+      ActiveRecord::Base.logger.info @event.errors.inspect
       @categories = Category.first_level.for_event(:order => :title)
       render :new
     end

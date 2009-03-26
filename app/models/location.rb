@@ -13,7 +13,7 @@ class Location < ActiveRecord::Base
   acts_as_versioned
   
   STATUS = %w(hidden flagged normal featured)
-  before_validation :set_default_status
+  before_validation_on_create :set_default_status
   before_validation_on_create :fetch_location_information
   after_create :set_permalink
   

@@ -11,7 +11,7 @@ class Event < ActiveRecord::Base
   has_and_belongs_to_many :watchers, :class_name => "User"
   
   STATUS = %w(deleted hidden flagged normal featured)
-  before_validation :set_default_status
+  before_validation_on_create :set_default_status
   after_create :set_permalink
   acts_as_versioned
   
@@ -122,7 +122,7 @@ class Event < ActiveRecord::Base
   end
   
   def set_default_status
-    self.status ||= "normal"
+    self.status = "normal"
   end
   
   def validate_on_create
