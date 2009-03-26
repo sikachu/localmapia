@@ -25,9 +25,13 @@ class LocationsController < ApplicationController
       session[:location] = Location.new(params[:location].merge(:user_id => @user.id))
       redirect_to :action => "step2"
     else
+      @location = session[:location]
       session[:location].attributes = params[:location]
       if session[:location].save
-        redirect_to location_permalink(session[:location])
+        @location = session
+        session[:location] = nil
+        @user.event_logs.create(:action => "create_location", :content => @location.id)
+        redirect_to location_permalink(@location)
       else
         flash[:error] = "There's something wrong with the data you entered. Please fix them and submit it again."
         redirect_to :action => "step2"
@@ -44,7 +48,8 @@ class LocationsController < ApplicationController
   def update
     if @location.update_attributes(params[:location])
       flash[:notice] = "Location has been updated successfully."
-      redirect_to location_permalink(session[:location])
+      @user.event_logs.create(:action => "update_location", :content => @location.id)
+      redirect_to location_permalink(@location)
     else
       render :edit
     end

@@ -12,41 +12,42 @@
       
 - two_columns do
   = content_block :featured_place do
-    - 3.times do
+    - @featured_places.each do |location|
       .item
         .photo
-          = image_tag "map.png"
-        %h3= link_to "Robinson Ratchada"
+          = image_tag location.thumbnail
+        %h3= link_to location.title, location_permalink(location)
         %small
           in
-          = link_to "Department Stores"
+          - if location.category.parent
+            = link_to location.category.parent.title, category_permalink(location.category.parent)
+            &gt;
+          = link_to location.category.title, category_permalink(location.category)
         .spaceh10
-        .content
-          The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words.
-          = link_to "more ..."
+        .content.markdown
+          :markdown
+            #{location.description}
         .clear
         .hr
   = content_block :recommended_events do
-    - 3.times do
+    - @featured_events.each do |event|
       .item
         .photo
-          = image_tag "map.png"
-        %h3= link_to "Commart Comtech 2009"
+          = image_tag event.location.thumbnail
+        %h3= link_to event.name
         %small
-          %span= pluralize(6, "member")
+          %span= pluralize(event.participations.count, "member")
           are going to this event
           %br
           in
-          = link_to "Exhibitions"
-          &gt;
-          = link_to "IT"
+          = link_to event.category.title, category_permalink(event.category)
           %br
           at
-          = link_to "Queen Sirikij National Convention Centre"
+          = link_to event.location.title, location_permalink(event.location)
         .spaceh10
-        .content
-          The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words.
-          = link_to "more ..."
+        .content.markdown
+          :markdown
+            #{event.description}
         .clear
         .hr
 .spaceh5
@@ -54,29 +55,33 @@
 - three_columns do
   = content_block :recently_added do
     %ul
-      - [["Oishi Resturant", "Food &amp; Dining", "Japanese"], ["King Mongkut's Institute of Technology Ladkrabang", "Education", "University"], ["Oishi Resturant", "Food &amp; Dining", "Japanese"], ["Oishi Resturant", "Food &amp; Dining", "Japanese"], ["Oishi Resturant", "Food &amp; Dining", "Japanese"]].each do |x,y,z|
+      - @recently_added.each do |location|
         %li
-          %h3= link_to x
+          %h3= link_to location.title, location_permalink(location)
           %small
             in
-            = link_to y
-            &gt;
-            = link_to z
+            - if location.category.parent
+              = link_to location.category.parent.title, category_permalink(location.category.parent)
+              &gt;
+            = link_to location.category.title, category_permalink(location.category)
   = content_block :updated_location do
     %ul
-      - [["Oishi Resturant", "Food &amp; Dining", "Japanese"], ["King Mongkut's Institute of Technology Ladkrabang", "Education", "University"], ["Oishi Resturant", "Food &amp; Dining", "Japanese"], ["Oishi Resturant", "Food &amp; Dining", "Japanese"], ["Oishi Resturant", "Food &amp; Dining", "Japanese"]].each do |x,y,z|
+      - @recently_updated.each do |location|
         %li
-          %h3= link_to x
+          %h3= link_to location.title, location_permalink(location)
           %small
             in
-            = link_to y
-            &gt;
-            = link_to z
+            - if location.category.parent
+              = link_to location.category.parent.title, category_permalink(location.category.parent)
+              &gt;
+            = link_to location.category.title, category_permalink(location.category)
   = content_block :top_contributors do
     %ul
-      - %w(Sittidej Sikachu John Jenny Nikkie).each do |x,y,z|
+      - @top_contributers.each do |log|
         %li
-          %h3= link_to x
+          %h3= link_to log.user.displayname
           %small
-            40 pages, joined 07-Jan-09
+            = log.count_all
+            pages, joined
+            = log.user.created_at.strftime("%d-%b-%y")
     

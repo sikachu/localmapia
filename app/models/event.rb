@@ -10,7 +10,7 @@ class Event < ActiveRecord::Base
   has_and_belongs_to_many :categories, :join_table => :events_categories
   has_and_belongs_to_many :watchers, :class_name => "User"
   
-  STATUS = %w(deleted hidden normal featured)
+  STATUS = %w(deleted hidden flagged normal featured)
   before_validation :set_default_status
   after_create :set_permalink
   acts_as_versioned
@@ -21,7 +21,9 @@ class Event < ActiveRecord::Base
   validates_format_of :url, :with => /^http(s|):\/\//, :allow_blank => true
   validates_presence_of :location
   
+  default_scope :conditions => {:status => STATUS[2..-1]}
   named_scope :active, :conditions => ["date_end > ?", Date.today], :order => "date_start DESC"
+  named_scope :featured, :conditions => {:status => "featured"}, :order => "created_at DESC", :limit => 3
   
   def tag_list=(str)
     self.tags.clear
@@ -91,6 +93,10 @@ class Event < ActiveRecord::Base
     time = formatted_time(time_start) + " until " + formatted_time(time_end)
     
     "#{date} #{time}"
+  end
+  
+  def flagged?
+    status == "flagged"
   end
   
   private

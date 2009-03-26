@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090325163658) do
+ActiveRecord::Schema.define(:version => 20090326041857) do
 
   create_table "categories", :force => true do |t|
     t.integer "parent_id"
@@ -109,8 +109,8 @@ ActiveRecord::Schema.define(:version => 20090325163658) do
 
   create_table "location_regions", :force => true do |t|
     t.integer  "location_id"
-    t.float    "lat"
-    t.float    "lng"
+    t.decimal  "lat",         :precision => 20, :scale => 16
+    t.decimal  "lng",         :precision => 20, :scale => 16
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -122,8 +122,8 @@ ActiveRecord::Schema.define(:version => 20090325163658) do
     t.integer  "parent_id"
     t.string   "title"
     t.text     "description"
-    t.float    "lat"
-    t.float    "lng"
+    t.decimal  "lat",             :precision => 20, :scale => 16
+    t.decimal  "lng",             :precision => 20, :scale => 16
     t.string   "city"
     t.string   "province"
     t.string   "country"
@@ -144,8 +144,8 @@ ActiveRecord::Schema.define(:version => 20090325163658) do
     t.integer  "parent_id"
     t.string   "title"
     t.text     "description"
-    t.float    "lat"
-    t.float    "lng"
+    t.decimal  "lat",             :precision => 20, :scale => 16
+    t.decimal  "lng",             :precision => 20, :scale => 16
     t.string   "city"
     t.string   "province"
     t.string   "country"

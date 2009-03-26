@@ -253,6 +253,15 @@ a
         :color #000
       h3 a
         :font-size 14px
+        
+  .markdown
+    :font-size 14px
+    // Avoid the header tags in the content block
+    h1, h2, h3, h4
+      :font-size 14px
+    li
+      :color #000
+      :font-size 100%
   
   .item
     :padding-top 4px
@@ -260,8 +269,10 @@ a
       :float right
       :border 1px solid #999
       :margin 0 0 2px 2px
-    .content
+    .content, .content li
       :color #666
+    .markdown
+      :font-size 12px
 
   .content h3
     :font-size 15px
@@ -492,7 +503,9 @@ form.new_location, form.edit_location, form.new_event
   li
     :color #000
     :font-size 100%
-
+.item .markdown
+  li
+    :color #666
 
 form#new_tag
   .field

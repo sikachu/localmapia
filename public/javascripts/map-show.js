@@ -1,5 +1,7 @@
+var map;
+
 function initialize_map(lat, lng, regions){
-  var map = new GMap2(document.getElementById("map-display"));
+  map = new GMap2(document.getElementById("map-display"));
   var latlng = new GLatLng(lat, lng);
   map.setCenter(latlng, 17);
   map.disableDragging();

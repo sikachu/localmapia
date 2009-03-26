@@ -1,0 +1,4 @@
+%div{:style => "position: relative;"}
+  #map-display{:style => "width: 368px; height: 355px; border: 1px solid #999; margin: 5px 0;"}
+  .larger_version_link{:style => "position: absolute; top: 3px; right: 3px;"}
+    = link_to "View larger version", "http://maps.google.com/?ie=UTF8&ll=#{@location.lat},#{@location.lng}&z=16", :popup => true

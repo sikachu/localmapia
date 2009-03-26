@@ -14,12 +14,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :session, :only => [:new, :create, :destroy]
   map.resources :locations, :new => [:step1, :step2], :collection => { :categories => :get } do |location|
     location.resources :events, :shallow => true do |event|
-      event.resources :feedbacks
-      event.resources :photos
-      event.resources :tags
-      event.resources :votes
-      event.resources :watchers
-      event.resources :participations
+      event.resources :feedbacks, :shallow => false
+      event.resources :photos, :shallow => false
+      event.resources :tags, :shallow => false
+      event.resources :votes, :shallow => false
+      event.resources :watchers, :shallow => false
+      event.resources :participations, :shallow => false
     end
     location.resources :feedbacks
     location.resources :photos

@@ -252,14 +252,23 @@ a {
         color: #000; }
       .block ul li h3 a {
         font-size: 14px; }
+  .block .markdown {
+    font-size: 14px; }
+    .block .markdown h1, .block .markdown h2, .block .markdown h3, .block .markdown h4 {
+      font-size: 14px; }
+    .block .markdown li {
+      color: #000;
+      font-size: 100%; }
   .block .item {
     padding-top: 4px; }
     .block .item .photo {
       float: right;
       border: 1px solid #999;
       margin: 0 0 2px 2px; }
-    .block .item .content {
+    .block .item .content, .block .item .content li {
       color: #666; }
+    .block .item .markdown {
+      font-size: 12px; }
   .block .content h3 {
     font-size: 15px;
     color: #174095; }
@@ -467,6 +476,9 @@ form.new_location .notice, form.edit_location .notice, form.new_event .notice {
   .block .markdown li {
     color: #000;
     font-size: 100%; }
+
+.item .markdown li {
+  color: #666; }
 
 form#new_tag .field {
   padding-top: 5px;

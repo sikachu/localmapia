@@ -1,21 +1,10 @@
-# == Schema Information
-# Schema version: 20090325065024
-#
-# Table name: event_logs
-#
-#  id         :integer(4)      not null, primary key
-#  user_id    :integer(4)
-#  action     :string(255)
-#  content    :text
-#  ip_address :string(255)
-#  user_agent :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#
-
 class EventLog < ActiveRecord::Base
   belongs_to :user
   
   validates_presence_of :user
   validates_presence_of :action
+  
+  def self.top_contributors
+    all(:conditions => {:action => %w(new_location update_location new_event update_event)}, :group => "user_id, content", :select => "COUNT(DISTINCT action, content) AS count_all, event_logs.*")
+  end
 end

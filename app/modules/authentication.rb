@@ -118,7 +118,7 @@ module Authentication
         if @user.nil? or @user.auto_login_hash != @cookies["_hash"]
           @user = nil
         else
-          @session[:user_id] = @user.id
+          @session[:user_id] = @user.id 
         end
       elsif @session[:user_id]
         @user = User.find_by_id(@session[:user_id])

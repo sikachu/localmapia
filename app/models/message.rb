@@ -1,18 +1,3 @@
-# == Schema Information
-# Schema version: 20090325065024
-#
-# Table name: messages
-#
-#  id         :integer(4)      not null, primary key
-#  from_id    :integer(4)
-#  to_id      :integer(4)
-#  title      :string(255)
-#  content    :text
-#  status     :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#
-
 class Message < ActiveRecord::Base
   belongs_to :from, :class_name => "User", :foreign_key => "from_id"
   belongs_to :to, :class_name => "User", :foreign_key => "to_id"

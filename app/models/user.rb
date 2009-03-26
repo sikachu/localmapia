@@ -1,26 +1,3 @@
-# == Schema Information
-# Schema version: 20090325065024
-#
-# Table name: users
-#
-#  id                 :integer(4)      not null, primary key
-#  email              :string(255)
-#  encrypted_password :string(255)
-#  salt               :string(255)
-#  displayname        :string(255)
-#  city               :string(255)
-#  province           :string(255)
-#  country            :string(255)
-#  status             :string(255)
-#  activation_key     :string(255)
-#  activated_at       :datetime
-#  password_reset_key :string(255)
-#  last_logged_in     :date
-#  created_at         :datetime
-#  updated_at         :datetime
-#  auto_login_hash    :string(255)
-#
-
 class User < ActiveRecord::Base
   include Authentication::Model
   
@@ -81,6 +58,14 @@ class User < ActiveRecord::Base
     else
       return false
     end
+  end
+  
+  def admin?
+    status == "admin"
+  end
+  
+  def moderator?
+    admin? || status == "moderator"
   end
   
   private

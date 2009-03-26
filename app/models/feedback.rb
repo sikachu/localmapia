@@ -1,19 +1,3 @@
-# == Schema Information
-# Schema version: 20090325065024
-#
-# Table name: feedbacks
-#
-#  id          :integer(4)      not null, primary key
-#  location_id :integer(4)
-#  event_id    :integer(4)
-#  user_id     :integer(4)
-#  content     :text
-#  rank        :integer(4)
-#  status      :string(255)
-#  created_at  :datetime
-#  updated_at  :datetime
-#
-
 class Feedback < ActiveRecord::Base
   belongs_to :location
   belongs_to :event

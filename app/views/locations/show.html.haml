@@ -1,6 +1,11 @@
 - content_for :javascript do
+  == <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=#{GOOGLE_API_KEY}&amp;hl=en" type="text/javascript"></script>
+  = javascript_include_tag "map-show"
   :javascript
     var _token = '#{form_authenticity_token}';
+    $(document).ready(function(){
+      initialize_map(#{@location.lat}, #{@location.lng}, [#{@location.regions_for_google}])
+    });
 
 - content_for :headline do
   .floatright
@@ -22,6 +27,7 @@
     = render "partials/photos", :object => @location.photos
   
   .rightcontent
+    = render "locations/map"
     = render "partials/rating"
     = content_block :events, :button => button_to_function("Add","window.location='#{new_location_event_path(@location)}'", :class => "small-add-button") do
       - if @location.events.empty?
