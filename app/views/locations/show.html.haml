@@ -9,7 +9,7 @@
 
 - content_for :headline do
   .floatright
-    = button_to_function "Send this to friend", "", :id => "send-to-friend"
+    = button_to_function "Send this to friend", "window.location='#{new_location_mail_path(@location)}'", :id => "send-to-friend"
   %h2= @location.title
   .tagline
     in

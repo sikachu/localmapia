@@ -34,7 +34,7 @@ $(document).ready(function(){
       score = 0
     }
     $(this).attr('class', 'stars not_voted stars-' + score);
-    $('.rating_text').html("Vote " + (score / 10.0) + " stars for this location");
+    $('.rating_text').html("Vote " + (score / 10.0) + " stars for this item");
   }).mouseout(function(){
     $(this).attr('class', current_stars_class);
     $('.rating_text').html(normal_text);

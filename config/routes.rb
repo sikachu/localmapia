@@ -8,11 +8,13 @@ ActionController::Routing::Routes.draw do |map|
       event.resources :votes, :shallow => false
       event.resources :watchers, :shallow => false
       event.resources :participations, :shallow => false
+      event.resources :mails, :shallow => false
     end
     location.resources :feedbacks
     location.resources :photos
     location.resources :tags
     location.resources :votes
+    location.resources :mails
   end
   map.resource :account, :path_names => { :new => 'register' }, :member => { :status => :get }
   map.activate "account/activate/:id", :controller => "accounts", :action => "activate"

@@ -9,7 +9,7 @@
     
 - content_for :headline do
   .floatright
-    = button_to_function "Send this to friend", "", :id => "send-to-friend"
+    = button_to_function "Send this to friend", "window.location='#{new_event_mail_path(@event)}'", :id => "send-to-friend"
   .spaceh5
   .tagline.gray{:style => "margin: 0;"}== Event in #{link_to @location.title, location_permalink(@location)}
   %h2= @event.name

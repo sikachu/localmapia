@@ -1,4 +1,5 @@
-= content_block :description, :button => button_to_function("Edit", "window.location.href='#{@event ? edit_event_path(@event) : edit_location_path(@location)}'", :class => "small-edit-button") + " " + button_to_function("Revert", "", :class => "small-revert-button") do
+- button = "#{button_to_function("Edit", "window.location.href='#{@event ? edit_event_path(@event) : edit_location_path(@location)}'", :class => "small-edit-button")} #{button_to_function("Revert", "", :class => "small-revert-button") if @user.moderator?}"
+= content_block :description, :button => button do
   .markdown
     :markdown
       #{description}

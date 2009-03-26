@@ -1,0 +1,33 @@
+- content_for :javascript do
+  == <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=#{GOOGLE_API_KEY}&amp;hl=en" type="text/javascript"></script>
+  = javascript_include_tag "map-show"
+  :javascript
+    $(document).ready(function(){
+      initialize_map(#{@location.lat}, #{@location.lng}, [#{@location.regions_for_google}])
+      $('form[id^=mail]').submit(function(){
+        if(!$("#mail_recipient").val().match(/^(.+)@(.+)\.(.+)$/)){
+          $("#mail_recipient").select();
+          alert("Error: You entered incorrect E-Mail");
+          return false;
+        }
+      })
+    });
+
+- content_for :headline do
+  %h2 Send this to your friend
+  .tagline Please give us more detail.
+
+
+- two_columns do
+  = content_block :your_mail do
+    - form_for @mail, :url => @mailable.class == "Location" ? location_mails_path : event_mails_path, :html => {:class => :formatted} do |f|
+      = f.field_for :recipient, :class => "full", :below => "Enter your friend's E-Mail address"
+      = f.field_for :content, :type => "text_area", :class => "full"
+      .spaceh10
+      .floatright
+        = f.submit "Next &raquo;", :class => "submit-button"
+    
+  = content_block :map do
+    #map-display{:style => "width: 358px; height: 355px; border: 1px solid #999"}
+
+  .clear

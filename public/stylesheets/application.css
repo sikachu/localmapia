@@ -297,12 +297,12 @@ form.formatted {
   form.formatted input.half {
     width: 150px; }
   form.formatted input.full {
-    width: 300px; }
+    width: 230px; }
   form.formatted textarea.half {
     width: 300px;
     height: 120px; }
   form.formatted textarea.full {
-    width: 350px;
+    width: 235px;
     height: 200px; }
   form.formatted .field {
     line-height: 18px;
