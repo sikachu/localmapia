@@ -18,36 +18,12 @@
     |
     = link_to_unless params[:type] == "updated", "Last updated", :type => "updated", :page => params[:page]
   .clear
-  
+
 - one_column do
   = content_block do
     .spaceh5
     - @search.send("sorted_by_#{params[:type]}")[@offset, 10].each do |id|
-      - object = @search.fetch_object(id)
-      .item[object]
-        .marker
-        - if object.class == Location
-          .location_badge
-            .top{:title => "Number of stars"}= object.stars / 10.0
-            .bottom{:title => "Number of feedbacks"}= object.feedbacks.count
-        - else
-          .event_badge
-            .top{:title => "Number of participants"}= object.participations.count
-            .bottom{:title => "Number of watchers"}= object.watchers.count
-        .info
-          
-          %h3= link_to object.title, object_permalink(object)
-          %small
-            in
-            - if object.category.parent
-              = link_to object.category.parent.title, category_permalink(object.category.parent)
-              &gt;
-            = link_to object.category.title, category_permalink(object.category)
-          .spaceh10
-          .content.markdown
-            :markdown
-              #{object.description}
-        .photo
-          = image_tag object.class == Event ? object.location.thumbnail : object.thumbnail
-        .clear
-        .hr
+      = render "partials/object", :object => @search.fetch_object(id)
+    .spaceh10
+    #pagination.center
+      xx

@@ -20,7 +20,8 @@ class Search < ActiveRecord::Base
     
     # Sort the object ids based on criteria
     self.sorted_by_relevance = result_object_ids.sort do |y,x| # Max -> Min
-      fetch_object(x).title.count(keyword) + fetch_object(x).description.count(keyword) <=> fetch_object(y).title.count(keyword) + fetch_object(y).description.count(keyword)
+      
+      (count_occurance(keyword, fetch_object(x).title) + count_occurance(keyword, fetch_object(x).description)) <=> (count_occurance(keyword, fetch_object(y).title) + count_occurance(keyword, fetch_object(y).description))
     end
     self.sorted_by_added = result_object_ids.sort do |y,x|
       fetch_object(x).created_at <=> fetch_object(y).created_at
@@ -70,5 +71,15 @@ class Search < ActiveRecord::Base
   
   def result_object_ids
     result_objects.collect{ |r| r.first }
+  end
+  
+  def count_occurance(needle, haystack)
+    count = 0
+    haystack = haystack.clone
+    while haystack[needle]
+      haystack.sub!(needle, '')
+      count += 1
+    end
+    count
   end
 end
