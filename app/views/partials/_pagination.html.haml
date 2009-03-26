@@ -1,0 +1,8 @@
+- max_page = (pagination.size / 10.0).ceil
+- if max_page > 1
+  #pagination.center
+    %ul
+      %li= link_to_if params[:page].to_i > 1, "&laquo; Previous", :type => params[:type], :page => (params[:page] - 1)
+      - (1..max_page).each do |page|
+        %li= link_to_if params[:page].to_i != page, page, :type => params[:type], :page => page
+      %li= link_to_if params[:page].to_i < max_page, "Next &raquo;", :type => params[:type], :page => (params[:page] + 1)

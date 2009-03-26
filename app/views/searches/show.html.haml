@@ -25,5 +25,4 @@
     - @search.send("sorted_by_#{params[:type]}")[@offset, 10].each do |id|
       = render "partials/object", :object => @search.fetch_object(id)
     .spaceh10
-    #pagination.center
-      
+    = render "partials/pagination", :object => @search.sorted_by_relevance

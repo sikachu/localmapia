@@ -2,7 +2,7 @@
   .marker
   - if object.class == Location
     .location_badge
-      .top{:title => "Number of stars"}= object.stars / 10.0
+      .top{:title => "Number of stars"}= (object.stars / 10.0).to_s.sub(/\.0$/, '')
       .bottom{:title => "Number of feedbacks"}= object.feedbacks.count
   - else
     .event_badge
