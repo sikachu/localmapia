@@ -1,0 +1,37 @@
+- content_for :headline do
+  %h2= @category.navigation.join(" &gt; ")
+  .tagline
+    View
+    = params[:object_type]
+    that belongs in this category.
+
+- if @collection.empty?
+  #fullcontent
+    We can't find any
+    = params[:object_type]
+    belong to this category.
+- else
+  #fullcontent.gray
+    .floatleft
+      Showing
+      = @offset + 1
+      \-
+      = @offset + 10 > @collection.size ? @collection.size : @offset + 10 
+      from
+      = @collection.size
+    .floatright
+      Order by:
+      = link_to_unless params[:type] == "title", "Name", "#{category_permalink(@category)}?type=title&amp;page=#{params[:page]}"
+      |
+      = link_to_unless params[:type] == "added", "Date added",  "#{category_permalink(@category)}?type=added&amp;page=#{params[:page]}"
+      |
+      = link_to_unless params[:type] == "updated", "Last updated",  "#{category_permalink(@category)}?type=updated&amp;page=#{params[:page]}"
+    .clear
+  
+  - one_column do
+    = content_block do
+      .spaceh5
+      - @collection.each do |object|
+        = render "partials/object", :object => object
+      .spaceh10
+      = render "partials/pagination", :object => @collection

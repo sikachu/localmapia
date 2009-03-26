@@ -1,0 +1,32 @@
+- content_for :headline do
+  %h2 Browse for locations and events
+  .tagline Your can find the locations or events you want based on their category and tag
+  
+- one_column do
+  = content_block :browse_for_location do
+    - @location_categories.each do |cate|
+      .category
+        .title= link_to cate.title, category_permalink(cate)
+        .children
+          = cate.children.collect{ |subcate| "#{link_to subcate.title, category_permalink(subcate)}(#{subcate.locations.count + subcate.events.count})" }.join(", ")
+      = cycle("", "<div class=\"clear\"></div>")
+    .clear
+  .clear
+  .spaceh10
+  .hr.end{:style => "margin-right: 5px"}
+  
+  .spaceh10
+  = content_block :browse_for_event do
+    - @event_categories.each do |cate|
+      .category
+        .title= "#{link_to cate.title, category_permalink(cate)}(#{cate.locations.count + cate.events.count})"
+  .clear
+  .spaceh10
+  .hr.end{:style => "margin-right: 5px"}
+  
+  .spaceh10
+  = content_block :browse_by_tag do
+    = @tags.collect{ |tag| "#{link_to tag.name, "/tags/#{tag.name}", :class => "tag-#{tag.sum_count_all.to_i - @tag_min_count}"}"}.join(", ")
+  .clear
+  .hr.end{:style => "margin-right: 5px"}
+      

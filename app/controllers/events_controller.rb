@@ -10,6 +10,7 @@ class EventsController < ApplicationController
   def create
     @event = @location.events.build(params[:event])
     if @event.save
+      @user.event_logs.create(:action => "create_event", :content => @event.id, :user_agent => request.env["HTTP_USER_AGENT"], :ip_address => request.env["X-Real-IP"])
       redirect_to event_permalink(@event)
     else
       @categories = Category.first_level.for_event(:order => :title)
@@ -26,6 +27,7 @@ class EventsController < ApplicationController
   def update
     if @event.update_attributes(params[:event])
       flash[:notice] = "Event has been updated successfully."
+      @user.event_logs.create(:action => "update_event", :content => @event.id, :user_agent => request.env["HTTP_USER_AGENT"], :ip_address => request.env["X-Real-IP"])
       redirect_to event_permalink(@event)
     else
       render :edit

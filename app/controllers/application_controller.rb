@@ -31,6 +31,6 @@ class ApplicationController < ActionController::Base
   end
   
   def category_permalink(category)
-    URI.escape "/#{category.category_type}s/in/#{category.parent.title.downcase.gsub(/ /, '-')+"/" if category.parent}#{category.title.downcase.gsub(/ /, '-')}"
+    URI.escape "/#{category.category_type}s/in/#{category.parent.permalink+"/" if category.parent}#{category.permalink}"
   end
 end

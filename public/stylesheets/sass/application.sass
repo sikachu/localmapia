@@ -200,10 +200,11 @@ a
     :padding 5px 10px
   #fullcontent
     :padding 0 10px
-    
 .block
   :float left
   :margin 5px
+  &.column_1
+    :width 740px
   &.column_2
     :width 365px
   &.column_3
@@ -604,3 +605,34 @@ form#new_tag
     :color #999
   li
   
+#browse_for_location_block, #browse_for_event_block
+  .content
+    :margin 5px 50px
+    .category
+      :float left
+      :width 295px
+      :margin 15px 10px 0 10px
+    .title
+      :font-size 18px
+    a
+      :color #000
+#browse_for_event_block .content .category
+  :width 190px
+  :margin 10px 10px 0 10px
+  
+#browse_by_tag_block .content
+  :margin 15px 60px
+  :font-size 20px
+  :text-align justify
+  a
+    :color #000
+  .tag-4
+    :font-size 19px
+  .tag-3
+    :font-size 18px
+  .tag-2
+    :font-size 16px
+  .tag-1
+    :font-size 14px
+  .tag-0
+    :font-size 12px

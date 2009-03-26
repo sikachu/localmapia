@@ -1,0 +1,33 @@
+- content_for :headline do
+  %h2= @tag.name
+  .tagline
+    View items that have been tagged with this tag
+
+- if @collection.empty?
+  #fullcontent
+    No item has been attached to this category
+- else
+  #fullcontent.gray
+    .floatleft
+      Showing
+      = @offset + 1
+      \-
+      = @offset + 10 > @collection_count ? @collection_count : @offset + 10 
+      from
+      = @collection_count
+    .floatright
+      Order by:
+      = link_to_unless params[:type] == "title", "Name", "#{tag_path(@tag.name)}?type=title&amp;page=#{params[:page]}"
+      |
+      = link_to_unless params[:type] == "added", "Date added",  "#{tag_path(@tag.name)}?type=added&amp;page=#{params[:page]}"
+      |
+      = link_to_unless params[:type] == "updated", "Last updated",  "#{tag_path(@tag.name)}?type=updated&amp;page=#{params[:page]}"
+    .clear
+  
+  - one_column do
+    = content_block do
+      .spaceh5
+      - @collection.each do |object|
+        = render "partials/object", :object => object
+      .spaceh10
+      = render "partials/pagination", :object => @collection

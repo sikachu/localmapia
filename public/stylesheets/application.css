@@ -206,6 +206,8 @@ a {
 .block {
   float: left;
   margin: 5px; }
+  .block.column_1 {
+    width: 740px; }
   .block.column_2 {
     width: 365px; }
   .block.column_3 {
@@ -575,3 +577,35 @@ form#new_tag .field {
   border: 1px solid #999;
   padding: 4px;
   color: #999; }
+
+#browse_for_location_block .content, #browse_for_event_block .content {
+  margin: 5px 50px; }
+  #browse_for_location_block .content .category,   #browse_for_event_block .content .category {
+    float: left;
+    width: 295px;
+    margin: 15px 10px 0 10px; }
+  #browse_for_location_block .content .title,   #browse_for_event_block .content .title {
+    font-size: 18px; }
+  #browse_for_location_block .content a,   #browse_for_event_block .content a {
+    color: #000; }
+
+#browse_for_event_block .content .category {
+  width: 190px;
+  margin: 10px 10px 0 10px; }
+
+#browse_by_tag_block .content {
+  margin: 15px 60px;
+  font-size: 20px;
+  text-align: justify; }
+  #browse_by_tag_block .content a {
+    color: #000; }
+  #browse_by_tag_block .content .tag-4 {
+    font-size: 19px; }
+  #browse_by_tag_block .content .tag-3 {
+    font-size: 18px; }
+  #browse_by_tag_block .content .tag-2 {
+    font-size: 16px; }
+  #browse_by_tag_block .content .tag-1 {
+    font-size: 14px; }
+  #browse_by_tag_block .content .tag-0 {
+    font-size: 12px; }

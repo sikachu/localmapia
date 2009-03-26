@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090326071601) do
+ActiveRecord::Schema.define(:version => 20090326180732) do
 
   create_table "categories", :force => true do |t|
     t.integer "parent_id"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20090326071601) do
     t.string  "navigation"
     t.string  "photo"
     t.string  "category_type"
+    t.string  "permalink"
   end
 
   create_table "category_fields", :force => true do |t|

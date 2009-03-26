@@ -19,7 +19,7 @@
             = link_to "Your account", account_path
           #top_navigation
             = link_to "<span></span>Search", searches_path, :class => "search"
-            = link_to "<span></span>Browse", "", :class => "browse"
+            = link_to "<span></span>Browse", browse_path, :class => "browse"
             = link_to "<span></span>Share", new_location_path, :class => "share"
             .clear
         .clear
@@ -42,25 +42,19 @@
             |
             = link_to "Share"
             |
-            = link_to "Featured Places"
-            |
-            = link_to "Recommended Events"
-          .heading YOUR ACCOUNT:
-          .content
-            = link_to "Dashboard"
+            = link_to "Your account"
             |
             = link_to "Messages"
+          .heading SUPPORT:
+          .content
+            = link_to "Help Forum"
             |
-            = link_to "Setting"
+            = link_to "FAQ and Support"
           .heading MORE:
           .content
             = link_to "Our Blog"
             |
-            = link_to "Developers"
-            |
-            = link_to "Help Forum"
-            |
-            = link_to "FAQ and Support"
+            = link_to "Meet the developers"
           .clear
           #copyright
             &copy; 2009 

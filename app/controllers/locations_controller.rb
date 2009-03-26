@@ -29,7 +29,7 @@ class LocationsController < ApplicationController
       if session[:location].save
         @location = session[:location]
         session[:location] = nil
-        @user.event_logs.create(:action => "create_location", :content => @location.id)
+        @user.event_logs.create(:action => "create_location", :content => @location.id, :user_agent => request.env["HTTP_USER_AGENT"], :ip_address => request.env["X-Real-IP"])
         redirect_to location_permalink(@location)
       else
         flash[:error] = "There's something wrong with the data you entered. Please fix them and submit it again."
@@ -47,7 +47,7 @@ class LocationsController < ApplicationController
   def update
     if @location.update_attributes(params[:location])
       flash[:notice] = "Location has been updated successfully."
-      @user.event_logs.create(:action => "update_location", :content => @location.id)
+      @user.event_logs.create(:action => "update_location", :content => @location.id, :user_agent => request.env["HTTP_USER_AGENT"], :ip_address => request.env["X-Real-IP"])
       redirect_to location_permalink(@location)
     else
       render :edit

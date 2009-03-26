@@ -1,15 +1,16 @@
 class Category < ActiveRecord::Base
   has_many :category_fields
   belongs_to :parent, :class_name => "Category"
-  has_and_belongs_to_many :locations
-  has_and_belongs_to_many :events
+  has_many :children, :class_name => "Category", :foreign_key => 'parent_id'
+  has_and_belongs_to_many :locations, :join_table => "locations_categories"
+  has_and_belongs_to_many :events, :join_table => "events_categories"
   
   CATEGORY_TYPE = %w(location event)
   serialize :navigation
   
   validates_presence_of :title
   validates_inclusion_of :category_type, :in => CATEGORY_TYPE
-  before_save :calculate_navigation
+  before_save :calculate_navigation, :set_permalink
   
   named_scope :for_location, :conditions => { :category_type => "location" }
   named_scope :for_event, :conditions => { :category_type => "event" }
@@ -30,5 +31,9 @@ class Category < ActiveRecord::Base
     if object.parent
       self.navigation.unshift object.parent.title
     end
+  end
+  
+  def set_permalink
+    self.permalink = title.downcase.gsub(/(\/| )+/, '-')
   end
 end
