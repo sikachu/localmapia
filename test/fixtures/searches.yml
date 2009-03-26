@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  keyword: MyString
+  sorted_by_relevance: MyText
+  sorted_by_added: MyText
+  sorted_by_updated: MyText
+
+two:
+  keyword: MyString
+  sorted_by_relevance: MyText
+  sorted_by_added: MyText
+  sorted_by_updated: MyText
