@@ -1,0 +1,2 @@
+$('#photos_block .content .photos').append('<%= link_to(image_tag(@photo.photo_url), @photo.original_url, :target => "_blank") %>').children('.empty').hide();
+$('#photo_original_url').val('');

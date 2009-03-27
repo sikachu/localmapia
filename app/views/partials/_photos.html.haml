@@ -1,7 +1,19 @@
-= content_block :photos, :button => button_to_function("Add","", :class => "small-add-button") do
-  - if photos.empty?
-    There's no photo related to this place yet. Help us add some photo from photo sharing site, such as Flickr, Hi5, Facebook, or Picasa Web Album
-  - else
-    User's photos that related to this place:
+= content_block :photos, :button => button_to_function("Add","$('#new_photo>.displaynone').slideToggle();", :class => "small-add-button") do
+  .photos
+    - if photos.empty?
+      .empty There's no photo related to this place yet. Help us add some photo from photo sharing site, such as Flickr, Hi5, Facebook, or Picasa Web Album
+    - else
+      - photos.each do |photo|
+        = link_to(image_tag(photo.photo_url), photo.original_url, :target => "_blank")
+  - form_for [(@event || @location), Photo.new] do |f|
+    .displaynone{:style => "height: 55px"}
+      .spaceh10
+      .floatright= f.submit "Add", :class => "add-button"
+      .field
+        Photo URL:
+        = f.text_field :original_url
+      .spaceh5
+      %small{:style => "padding-left: 78px"} Currently we support only photo from Flickr!
+      .clear
 .clear
 .hr.end

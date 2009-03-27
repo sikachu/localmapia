@@ -488,12 +488,14 @@ form.new_location .notice, form.edit_location .notice, form.new_event .notice {
 .item .markdown li {
   color: #666; }
 
-form#new_tag .field {
-  padding-top: 5px;
-  font-size: 14px; }
-  form#new_tag .field #tag_name {
-    width: 180px;
-    font-size: 13px; }
+form#new_tag, form#new_photo {
+  margin-bottom: 5px; }
+  form#new_tag .field,   form#new_photo .field {
+    padding-top: 5px;
+    font-size: 14px; }
+    form#new_tag .field #tag_name, form#new_tag .field #photo_original_url,     form#new_photo .field #tag_name, form#new_photo .field #photo_original_url {
+      width: 180px;
+      font-size: 13px; }
 
 .big-button {
   background: url('/images/localmapia.png') -724px 0px no-repeat;
@@ -609,3 +611,9 @@ form#new_tag .field {
     font-size: 14px; }
   #browse_by_tag_block .content .tag-0 {
     font-size: 12px; }
+
+#photos_block .photos img {
+  margin: 2px;
+  border: 1px solid #666;
+  width: 75px;
+  height: 75px; }

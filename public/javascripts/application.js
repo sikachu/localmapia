@@ -47,4 +47,9 @@ $(document).ready(function(){
     $(".number", this).html('<img src="/images/loader.gif" style="margin: 9px 0 7px 0;" />');
     $.post($(this).attr('rel'), {authenticity_token: _token}, null, "script");
   });
+  
+  $('#new_photo').submit(function(){
+    $.post($(this).attr("action")+".js", $(this).serialize(), null, "script")
+    return false;
+  });
 })

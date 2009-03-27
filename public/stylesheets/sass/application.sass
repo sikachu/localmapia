@@ -512,11 +512,12 @@ form.new_location, form.edit_location, form.new_event
   li
     :color #666
 
-form#new_tag
+form#new_tag, form#new_photo
+  :margin-bottom 5px
   .field
     :padding-top 5px
     :font-size 14px
-    #tag_name
+    #tag_name, #photo_original_url
       :width 180px
       :font-size 13px
       
@@ -636,3 +637,10 @@ form#new_tag
     :font-size 14px
   .tag-0
     :font-size 12px
+    
+#photos_block .photos
+  img
+    :margin 2px
+    :border 1px solid #666
+    :width 75px
+    :height 75px
