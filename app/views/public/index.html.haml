@@ -34,7 +34,7 @@
       .item
         .photo
           = image_tag event.location.thumbnail
-        %h3= link_to event.name
+        %h3= link_to event.name, event_permalink(event)
         %small
           %span= pluralize(event.participations.count, "member")
           are going to this event
