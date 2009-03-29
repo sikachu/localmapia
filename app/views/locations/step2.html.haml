@@ -10,7 +10,7 @@
   %h2 Add new location: Step 2 of 2
   .tagline Please give us more detail about this location
 
-= render "layout/notice"
+= render "layouts/notice"
 - form_for @location, :html => { :id => "new_location_2"} do |f|
   - two_columns do
     = content_block :information_about_location do
