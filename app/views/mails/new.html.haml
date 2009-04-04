@@ -20,7 +20,7 @@
 
 - two_columns do
   = content_block :your_mail do
-    - form_for @mail, :url => @mailable.class == "Location" ? location_mails_path : event_mails_path, :html => {:class => :formatted} do |f|
+    - form_for @mail, :url => @mailable.class == "Location" ? location_mails_path(@mailable) : event_mails_path(@mailable), :html => {:class => :formatted} do |f|
       = f.field_for :recipient, :class => "full", :below => "Enter your friend's E-Mail address"
       = f.field_for :content, :type => "text_area", :class => "full"
       .spaceh10

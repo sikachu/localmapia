@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_filter :check_login, :except => [:index, :show]
   before_filter :load_event, :only => [:show, :edit, :update, :destroy]
   before_filter :find_location
 

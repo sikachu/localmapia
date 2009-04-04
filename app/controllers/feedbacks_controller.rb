@@ -1,5 +1,5 @@
 class FeedbacksController < ApplicationController
-  before_filter :load_commentable
+  before_filter :check_login, :load_commentable
 
   def create
     unless logged_in?
