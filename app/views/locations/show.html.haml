@@ -53,5 +53,5 @@
     
     .spaceh5
     .center
-      =link_to "Report inappropriate content", new_report_path(:type => "event", :id => @location.id) if logged_in?
+      =link_to "Report inappropriate content", new_report_path(:type => "location", :id => @location.id) if logged_in?
   
