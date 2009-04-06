@@ -9,7 +9,7 @@
 
 - content_for :headline do
   .floatright
-    = button_to_function "Send this to friend", "window.location='#{new_location_mail_path(@location)}'", :id => "send-to-friend"
+    = button_to_function "Send this to friend", "window.location='#{new_location_mail_path(@location)}'", :id => "send-to-friend" if logged_in?
   %h2= @location.title
   .tagline
     in
@@ -29,7 +29,7 @@
   .rightcontent
     = render "locations/map"
     = render "partials/rating"
-    = content_block :events, :button => button_to_function("Add","window.location='#{new_location_event_path(@location)}'", :class => "small-add-button") do
+    = content_block :events, :button => buttons_for_events do
       - if @location.events.empty?
         No information about the event has been added yet. If you know one, help us by add it to our database.
       - else
@@ -50,4 +50,8 @@
             .hr
     .clear
     .hr.end
+    
+    .spaceh5
+    .center
+      =link_to "Report inappropriate content", new_report_path(:type => "event", :id => @location.id) if logged_in?
   

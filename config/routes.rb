@@ -22,6 +22,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :categories
   map.connect ":object_type/in/:parent/:id", :controller => "categories", :action => "show", :object_type => /events|locations/
   map.resources :tags
+  map.resources :reports
   map.browse "browse", :controller => "categories"
   
   map.login "login", :controller => "sessions", :action => "new"

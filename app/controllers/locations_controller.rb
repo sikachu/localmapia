@@ -1,5 +1,5 @@
 class LocationsController < ApplicationController
-  before_filter :check_for_login, :only => [:step1, :step2]
+  before_filter :check_for_login, :only => [:step1, :step2, :create, :edit, :update, :destroy]
   before_filter :load_location, :only => [:show, :edit, :update, :destroy]
   
   def index

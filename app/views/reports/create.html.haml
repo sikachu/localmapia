@@ -1,0 +1,10 @@
+- content_for :headline do
+  %h2 Send inappropriate content report
+  .tagline
+    == Report for #{params[:type]} '#{@report.object.title}'
+    
+#fullcontent
+  .spaceh15
+  Thank you for your report.
+  = link_to "Please click here to go back.", object_permalink(@report.object)
+  .spaceh15

@@ -1,0 +1,13 @@
+- content_for :headline do
+  %h2 Send inappropriate content report
+  .tagline
+    == Report for #{params[:type]} '#{@object.title}'
+    
+#fullcontent
+  - form_for @report, :html => {:class => "formatted"} do |f|
+    Please include your detail about this report, such as what did you think it's inappropriate, and how should we deal with it. We'll deal with it as soon as possible.
+    .spaceh10
+    = f.field_for :content, :type => "text_area", :label => "Description", :required => false
+    = f.hidden_field :object_type
+    = f.hidden_field :object_id
+    = f.row "#{submit_tag "Send error report", :class => "submit-button"}"

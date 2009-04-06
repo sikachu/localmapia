@@ -1,5 +1,6 @@
 class TagsController < ApplicationController
   before_filter :load_taggable, :only => :create
+  before_filter :check_login, :only => :create
   
   def create
     Tag.batch_create(params[:tag], @taggable)

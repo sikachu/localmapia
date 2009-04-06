@@ -21,7 +21,7 @@ module ApplicationHelper
     end
     output = "<div id=\"#{title || "dynamic"}_block\" class=\"block column_#{@number_of_columns} #{"border_bottom" if opts[:border]}\">"
     output << "<div class=\"hr_head\"></div>" unless opts[:header] == false
-    button = "<div class=\"floatright button\">#{opts[:button]}</div>\n" if opts[:button]
+    button = "<div class=\"floatright button\">#{send("buttons_for_#{title}")}</div>\n" if title.present? and respond_to?("buttons_for_#{title}")
     if title
       output = <<-HTML
         #{output}

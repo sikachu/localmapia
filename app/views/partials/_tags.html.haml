@@ -1,11 +1,10 @@
-- button = "#{button_to_function("Add","$('#new_tag>.displaynone').slideToggle();", :class => "small-add-button")} #{button_to_function("Remove","", :class => "small-edit-button") if logged_in? and @user.moderator?}"
-= content_block :tags, :button => button do
+= content_block :tags, :button => buttons_for_tags do
   - if tags.empty?
     %div
       No tag has been added to this
       = @event ? "event" : "location"
   - else
-    .taglist= tags.collect{ |tag| link_to(tag.name,"") }.join(", ")
+    .taglist= tags.collect{ |tag| link_to(tag.name, tag_path(tag.name)) }.join(", ")
   - form_for [(@event || @location), Tag.new] do |f|
     .displaynone{:style => "height: 55px"}
       .spaceh10

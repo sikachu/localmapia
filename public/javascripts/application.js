@@ -43,7 +43,7 @@ $(document).ready(function(){
     $.post($('.center.rating').attr('rel'), {authenticity_token: _token, score: score}, null, "script");
   });
   
-  $('#participate, #watch').click(function(){
+  $('#participate.clickable, #watch.clickable').click(function(){
     $(".number", this).html('<img src="/images/loader.gif" style="margin: 9px 0 7px 0;" />');
     $.post($(this).attr('rel'), {authenticity_token: _token}, null, "script");
   });

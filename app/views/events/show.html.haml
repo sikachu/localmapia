@@ -9,7 +9,7 @@
     
 - content_for :headline do
   .floatright
-    = button_to_function "Send this to friend", "window.location='#{new_event_mail_path(@event)}'", :id => "send-to-friend"
+    = button_to_function "Send this to friend", "window.location='#{new_event_mail_path(@event)}'", :id => "send-to-friend" if logged_in?
   .spaceh5
   .tagline.gray{:style => "margin: 0;"}== Event in #{link_to @location.title, location_permalink(@location)}
   %h2= @event.name
@@ -21,7 +21,7 @@
 .spaceh5
 - two_columns do
   .leftcontent
-    #participate.big-button.floatleft{:class => "#{"active" if @event.participations.exists?(:user_id => @user.id)}", :rel => event_participations_path(@event)}
+    #participate.big-button.floatleft{:class => "#{"clickable" if logged_in?} #{"active" if logged_in? and @event.participations.exists?(:user_id => @user.id)}", :rel => event_participations_path(@event)}
       .left
         .number= @event.participants.count
         .under participants
@@ -29,7 +29,7 @@
         .tiny I'll be
         .huge Participate!
         
-    #watch.second.big-button.floatleft{:class => "#{"active" if @event.watcher_ids.include? @user.id}", :rel => event_watchers_path(@event)}
+    #watch.second.big-button.floatleft{:class => "#{"clickable" if logged_in?} #{"active" if logged_in? and @event.watcher_ids.include? @user.id}", :rel => event_watchers_path(@event)}
       .left
         .number= @event.watchers.count
         .under watchers
@@ -46,3 +46,6 @@
     = render "locations/map"
     = render "partials/rating"
     = render "partials/photos", :object => @event.photos
+    .spaceh5
+    .center
+      =link_to "Report inappropriate content", new_report_path(:type => "event", :id => @event.id) if logged_in?

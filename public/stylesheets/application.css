@@ -501,9 +501,10 @@ form#new_tag, form#new_photo {
   background: url('/images/localmapia.png') -724px 0px no-repeat;
   width: 181px;
   height: 60px;
-  margin-left: 5px;
-  cursor: hand;
-  cursor: pointer; }
+  margin-left: 5px; }
+  .big-button.clickable {
+    cursor: hand;
+    cursor: pointer; }
   .big-button.second {
     margin-left: 3px; }
   .big-button.active {

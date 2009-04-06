@@ -33,4 +33,13 @@ class ApplicationController < ActionController::Base
   def category_permalink(category)
     URI.escape "/#{category.category_type}s/in/#{category.parent.permalink+"/" if category.parent}#{category.permalink}"
   end
+  
+  helper_method :moderator?, :admin?
+  def moderator?
+    logged_in? and @user.moderator?
+  end
+  
+  def admin?
+    logged_in? and @user.admin?
+  end
 end
